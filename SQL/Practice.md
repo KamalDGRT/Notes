@@ -58,7 +58,7 @@ Create the following table with the following values. <br>
 -   For the remaining rows, do it on your own.
 
     ```sql
-        INSERT INTO `student`
+        INSERT INTO `Student`
         (`Roll`, `Sname`, `Gender`, `Dob`, `Total`, `Average`, `Grade`)
         VALUES
         (1, 'Anand', 'M', '2001-05-13', 407, 81.4, 'B');
@@ -74,7 +74,7 @@ Create the following table with the following values. <br>
 
 ```sql
     SELECT Sname, Gender
-    FROM `student`;
+    FROM `Student`;
 ```
 
 ##### _Output_ :
@@ -112,3 +112,27 @@ Create the following table with the following values. <br>
 ### Q09. Display the name of female students who have scored the grades A or B.
 
 ### Q10. Display the roll numbers of students who have scored grade other than A or B.
+
+### Q11. Display the names of the students born in the year 2001.
+
+### Q12. Display the names of the students born in the month of November 2020.
+
+### Q13. Display the names of the students bon in the year 2000 but not in the month of November.
+
+### Q14. Display the different grades obtained by the students.
+
+### Q15. Display the name, average and grade of all female students in the following format:
+
+```
+Shivani has scored an average of 95.2 with grade A.
+```
+
+### Q16. Assume there is no average column in the table and the Total attribute is the expression of 5 subjects mark. Display the name and average marks of all the female students.
+
+### Q17. Display names of students whose name starts with 'A'.
+
+### Q18. Display the roll number, name, total of the students whose starts with 'A' and ends with 'd'.
+
+### Q19. Display the details of students whose name is exactly 5 charcters in length.
+
+### Q20. Display the details of students whose name has 'i'.

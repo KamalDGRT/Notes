@@ -183,7 +183,7 @@ Shivani has scored an average of 95.2 with grade A.
     WHERE Grade='D';
 ```
 
-### Q31.4
+#### Q31.4
 
 ```sql
     SELECT AVG(Total / 5)
@@ -254,6 +254,6 @@ We need this table for the next set of queries.
 
 ### Q48. Display the roll number, student name and parent name of all 'A' graders.
 
-### Q49. Remove the details of those students who hav got 'D' grade.
+### Q49. Remove the details of those students who have got 'D' grade.
 
 ### Q50. Remove the Student table from the database.

@@ -140,3 +140,19 @@ Shivani has scored an average of 95.2 with grade A.
 ### Q21. Display the names of students not starting with A or S.
 
 ### Q22. Display names of students whose birth date is 5.
+
+### Q23. Display the names of students in the table in alphabetical order.
+
+### Q24. Display the name and total of female students in descending order of total.
+
+### Q25. Display the name, grade and total of all the students who have scored above 395 in descending  order of their grades and ascending order of their name.
+
+### Q26. Find the sum of the total marks obtained by students who have scored the grade 'A'.
+
+### Q27. Display the average of the average marks scored by 'A' graders.
+
+### Q28. Display the total number of students in the table.
+
+### Q29. Display the number of different grades available in the table.
+
+### Q30. Display the details of the student(s) who is the youngest in the table.

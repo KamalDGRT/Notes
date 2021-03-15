@@ -206,13 +206,15 @@ Shivani has scored an average of 95.2 with grade A.
 
 ### Q39. Create a view V1 which is an exact copy of the _Student_ table. Display it after creation.
 
-Note: 2 seperate queries to be executed. One of the view and another for the displaying part.
+Note: 2 seperate queries to be executed. One for the view and another for the displaying part.
 
 ### Q40. Create a view V2 which contains roll number and name of all the 'A' graders.
 
 ### Q41. Display the contents of the new view V2.
 
-### Q42. Create a view V3 that has a a copy of roll number and name of all the 'A' graders but with new column names.
+### Q42. Create a view V3 that has a a copy of roll number and name of all the 'A' graders but with new column names. Display the view after creation.
+
+Note: 2 seperate queries to be executed. One for the view and another for the displaying part.
 
 ### Q43. Add a new column age of appropriate data type to the existing table and fill the age.
 

@@ -209,3 +209,23 @@ Shivani has scored an average of 95.2 with grade A.
 Note: 2 seperate queries to be executed. One of the view and another for the displaying part.
 
 ### Q40. Create a view V2 which contains roll number and name of all the 'A' graders.
+
+### Q41. Display the contents of the new view V2.
+
+### Q42. Create a view V3 that has a a copy of roll number and name of all the 'A' graders but with new column names.
+
+### Q43. Add a new column age of appropriate data type to the existing table and fill the age.
+
+Note: First you will be adding a the column. Then you will be calculating the age and updating it in the table. So, 2 separate queries. Have the output of both the queries.
+
+### Q44. Remove the column age from the _Student_ table.
+
+### Q45. Alter the Average column to FLOAT(10, 2). 
+
+Note: 
+- Before executing the query for this question, execute `DESC Student;` and have the output in the markdown file.
+- Display the `Student` Table.
+- Execute the query to change the column type.
+- Paste the output to the markdown file.
+- Execute `DESC Student;` and paste the output in the markdown file.
+- Display the `Student` table again.

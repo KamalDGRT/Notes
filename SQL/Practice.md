@@ -35,8 +35,8 @@ Create the following table with the following values. <br>
 | 5    | Sarchin | M      | 12/23/2001 | 400   | 80      | C     |
 | 6    | Dhoni   | M      | 11/17/2000 | 415   | 83      | B     |
 | 7    | Kamala  | F      | 12/05/2001 | 400   | 80      | C     |
-| 8    | Varun   | M      | 11/11/2001 | 470   | 94      | A     |
-| 9    | Rekha   | F      | 10/15/2001 | 490   | 98      | A     |
+| 8    | Varun   | M      | 11/11/2000 | 470   | 94      | A     |
+| 9    | Rekha   | F      | 10/15/2000 | 490   | 98      | A     |
 
 #### Hints
 
@@ -136,3 +136,7 @@ Shivani has scored an average of 95.2 with grade A.
 ### Q19. Display the details of students whose name is exactly 5 charcters in length.
 
 ### Q20. Display the details of students whose name has 'i'.
+
+### Q21. Display the names of students not starting with A or S.
+
+### Q22. Display names of students whose birth date is 5.

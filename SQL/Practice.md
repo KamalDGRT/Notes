@@ -256,6 +256,6 @@ We need this table for the next set of queries.
 
 ### Q48. Display the roll number, student name and parent name of all 'A' graders.
 
-### Q49. Remove the details of those students who have got 'D' grade.
+### Q49. Remove the details of those students from the `Student` table who have got 'D' grade.
 
 ### Q50. Remove the Student table from the database.

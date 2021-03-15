@@ -23,7 +23,7 @@ Create the following table with the following values. <br>
 -   Date can be given in single quotes.
 -   Use the table name instead of `TABLE` while inserting into a table.
 -   For numerical values, the quotes is not needed.
--   For most of the questions answer will be the same for everyone. 
+-   For most of the questions answer will be the same for everyone.
 -   For a few questions, it might vary depending on how you approach the question.
 
 | Roll | Sname   | Gender | Dob        | Total | Average | Grade |
@@ -49,7 +49,7 @@ Create the following table with the following values. <br>
             Gender char(2),
             Dob DATE,
             Total INT,
-            Average NUMERIC,
+            Average NUMERIC(10, 2),
             Grade char(2)
         );
     ```

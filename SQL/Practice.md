@@ -29,7 +29,7 @@ Create the following table with the following values. <br>
 | Roll | Sname   | Gender | Dob        | Total | Average | Grade |
 | ---- | ------- | ------ | ---------- | ----- | ------- | ----- |
 | 1    | Anand   | M      | 05/13/2001 | 407   | 81.4    | B     |
-| 2    | Ajay    | M      | 04/02/2001 | 406   | 80      | C     |
+| 2    | Ajay    | M      | 04/02/2001 | 400   | 80      | C     |
 | 3    | Bharath | M      | 11/05/2000 | 355   | 71      | D     |
 | 4    | Shivani | F      | 05/06/2001 | 476   | 95.2    | A     |
 | 5    | Sarchin | M      | 12/23/2001 | 400   | 80      | C     |
@@ -117,7 +117,7 @@ Create the following table with the following values. <br>
 
 ### Q12. Display the names of the students born in the month of November 2000.
 
-### Q13. Display the names of the students bon in the year 2000 but not in the month of November.
+### Q13. Display the names of the students born in the year 2000 but not in the month of November.
 
 ### Q14. Display the different grades obtained by the students.
 
@@ -156,3 +156,13 @@ Shivani has scored an average of 95.2 with grade A.
 ### Q29. Display the number of different grades available in the table.
 
 ### Q30. Display the details of the student(s) who is the youngest in the table.
+
+### Q31. Write the Output for the following
+
+#### Q31.1 
+
+```sql
+    SELECT MAX(Dob), MIN(Dob), SUM(Total) 
+    FROM `Student`
+    WHERE Dob BETWEEN '2001-01-01' AND '2001-12-31';
+```

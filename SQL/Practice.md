@@ -145,7 +145,7 @@ Shivani has scored an average of 95.2 with grade A.
 
 ### Q24. Display the name and total of female students in descending order of total.
 
-### Q25. Display the name, grade and total of all the students who have scored above 395 in descending  order of their grades and ascending order of their name.
+### Q25. Display the name, grade and total of all the students who have scored above 395 in descending order of their grades and ascending order of their name.
 
 ### Q26. Find the sum of the total marks obtained by students who have scored the grade 'A'.
 
@@ -159,10 +159,53 @@ Shivani has scored an average of 95.2 with grade A.
 
 ### Q31. Write the Output for the following
 
-#### Q31.1 
+#### Q31.1
 
 ```sql
-    SELECT MAX(Dob), MIN(Dob), SUM(Total) 
+    SELECT MAX(Dob), MIN(Dob), SUM(Total)
     FROM `Student`
     WHERE Dob BETWEEN '2001-01-01' AND '2001-12-31';
 ```
+
+#### Q31.2
+
+```sql
+    SELECT COUNT(*), MAX(Total), MIN(Total)
+    FROM `Student`
+    WHERE Grade IN ('A', 'B');
+```
+
+#### Q31.3
+
+```sql
+    SELECT SUM(Total + 5)
+    FROM `Student`
+    WHERE Grade='D';
+```
+
+### Q31.4
+
+```sql
+    SELECT AVG(Total / 5) 
+    FROM `Student`;
+```
+
+### Q32. Display the count of gender based on gender.
+
+### Q33. Display the maximum and minimum marks obtained by the students grade wise.
+
+### Q34. Display the maximum and minimum total of the students born in the year 2001 based on their grade.
+
+### Q35. Display the number of students grade wise where grades include A and B.
+
+### Q36. Display the number of students grade wise where number of students in each grade is more than two.
+
+### Q37. Update Varun's date of birth to 12th November 2000.
+
+### Q38. Increment Sarchin's mark by 10 and alter his grade to B.
+
+### Q39. Create a view V1 which is an exact copy of the _Student_ table. Display it after creation.
+
+Note: 2 seperate queries to be executed. One of the view and another for the displaying part.
+
+### Q40. Create a view V2 which contains roll number and name of all the 'A' graders.

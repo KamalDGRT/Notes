@@ -186,7 +186,7 @@ Shivani has scored an average of 95.2 with grade A.
 ### Q31.4
 
 ```sql
-    SELECT AVG(Total / 5) 
+    SELECT AVG(Total / 5)
     FROM `Student`;
 ```
 
@@ -220,12 +220,40 @@ Note: First you will be adding a the column. Then you will be calculating the ag
 
 ### Q44. Remove the column age from the _Student_ table.
 
-### Q45. Alter the Average column to FLOAT(10, 2). 
+### Q45. Alter the Average column to FLOAT(10, 2).
 
-Note: 
-- Before executing the query for this question, execute `DESC Student;` and have the output in the markdown file.
-- Display the `Student` Table.
-- Execute the query to change the column type.
-- Paste the output to the markdown file.
-- Execute `DESC Student;` and paste the output in the markdown file.
-- Display the `Student` table again.
+Note:
+
+-   Before executing the query for this question, execute `DESC Student;` and have the output in the markdown file.
+-   Display the `Student` Table.
+-   Have the query and the output for that in the markdown file.
+-   Execute the query to change the column type.
+-   Paste the query and the output to the markdown file.
+-   Execute `DESC Student;` and paste the output in the markdown file.
+-   Display the `Student` table again.
+
+### Q46. Display the value of Total / 5 for every female student and give a new column name.
+
+<hr>
+
+We need this table for the next set of queries.
+
+-   Table Name : `Personal`
+
+| Roll | Parent | Address          | Phone_No |
+| ---- | ------ | ---------------- | -------- |
+| 2    | ABC    | 1st Cross Street | 12345678 |
+| 3    | XYZ    | 2nd Cross Street | 41234561 |
+| 4    | PQR    | 3rd Cross Street | 12370171 |
+| 7    | LMN    | 4th Cross Street | 40007714 |
+| 9    | ABCD   | 5th Cross Street | 56789101 |
+
+<hr>
+
+### Q47. Display the student name, parent name and address of all the students.
+
+### Q48. Display the roll number, student name and parent name of all 'A' graders.
+
+### Q49. Remove the details of those students who hav got 'D' grade.
+
+### Q50. Remove the Student table from the database.

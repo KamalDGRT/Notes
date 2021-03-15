@@ -115,7 +115,7 @@ Create the following table with the following values. <br>
 
 ### Q11. Display the names of the students born in the year 2001.
 
-### Q12. Display the names of the students born in the month of November 2020.
+### Q12. Display the names of the students born in the month of November 2000.
 
 ### Q13. Display the names of the students bon in the year 2000 but not in the month of November.
 

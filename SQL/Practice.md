@@ -33,7 +33,7 @@ Create the following table with the following values. <br>
 | 3    | Bharath | M      | 11/05/2000 | 355   | 71      | D     |
 | 4    | Shivani | F      | 05/06/2001 | 476   | 95.2    | A     |
 | 5    | Sarchin | M      | 12/23/2001 | 400   | 80      | C     |
-| 6    | Dhoni   | M      | 11/17/2001 | 415   | 83      | B     |
+| 6    | Dhoni   | M      | 11/17/2000 | 415   | 83      | B     |
 | 7    | Kamala  | F      | 12/05/2001 | 400   | 80      | C     |
 | 8    | Varun   | M      | 11/11/2001 | 470   | 94      | A     |
 | 9    | Rekha   | F      | 10/15/2001 | 490   | 98      | A     |

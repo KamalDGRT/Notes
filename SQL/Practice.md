@@ -77,7 +77,8 @@ Create the following table with the following values. <br>
     FROM `Student`;
 ```
 
-##### _Output_ :
+##### _Output_ :  SELECT Sname, Gender
+    FROM `Student`;
 
 ```
 +---------+--------+
@@ -96,6 +97,10 @@ Create the following table with the following values. <br>
 ```
 
 ### Q02. Display the contents of the entire table.
+#### _Output :_
+```sql
+    select * from student;
+```
 
 ### Q03. Display the unique values of `Total` from the table.
 

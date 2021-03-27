@@ -124,7 +124,7 @@ install a database, such as MySQL
 <?php
     // This is a single-line comment
 
-    # This is also a single-line comment 
+    # This is also a single-line comment
 
     /*
         This is a multiple-lines comment
@@ -134,7 +134,7 @@ install a database, such as MySQL
 
     // You can also use comments to leave out parts of a code line
     $x = 5 /* + 15 */ + 5;
-    echo $x; 
+    echo $x;
 ?>
 ```
 
@@ -144,3 +144,280 @@ install a database, such as MySQL
 10
 ```
 
+<hr>
+
+### 3. Data Types
+
+-   Variables can store data of different types, and different data types can do
+    different things.
+-   PHP supports the following data types:
+    -   String
+    -   Integer
+    -   Float (floating point numbers - also called double)
+    -   Boolean
+    -   Array
+    -   Object
+    -   NULL
+    -   Resource
+
+#### PHP String
+
+-   A string is a sequence of characters, like "Hello world!".
+-   A string can be any text inside quotes. You can use single or double quotes:
+
+##### Example
+
+```php
+<html>
+    <body>
+    <?php
+        $x = "Hello world!";
+        $y = 'Hello world!';
+        echo $x;
+        echo "<br>";
+        echo $y;
+    ?>
+    </body>
+</html>
+```
+
+###### Output
+
+```
+Hello world!
+Hello world!
+```
+
+#### String Functions
+
+-   Get The Length of a String
+-   The PHP strlen() function returns the length of a string.
+-   The example below returns the length of the string "Hello world!":
+
+##### Example
+
+```php
+<html>
+    <body>
+    <?php
+        echo strlen("Hello world!"); ?>
+    </body>
+</html>
+```
+
+###### Output
+
+```
+12
+```
+
+#### Count The Number of Words in a String
+
+-   The PHP str_word_count() function counts the number of words in a string.
+
+##### Example
+
+```php
+<html>
+    <body>
+    <?php
+        echo str_word_count("Hello world!");
+    ?>
+    </body>
+</html>
+```
+
+###### Output
+
+```
+2
+```
+
+#### Reverse a String
+
+-   The PHP strrev() function reverses a string.
+
+##### Example
+
+```php
+<html>
+    <body>
+    <?php
+        echo strrev("Hello world!");
+    ?>
+    </body>
+</html>
+```
+
+###### Output
+
+```
+!dlrow olleH
+```
+
+#### Search For a Specific Text Within a String
+
+-   The PHP strpos() function searches for a specific text within a string.
+-   If a match is found, the function returns the character position of the first match.
+-   If no match is found, it will return FALSE.
+-   The example below searches for the text "world" in the string "Hello world!".
+
+##### Example
+
+```php
+<html>
+    <body>
+    <?php
+        echo strpos("Hello world!", "world");
+    ?>
+    </body>
+</html>
+```
+
+###### Output
+
+```
+6
+```
+
+#### Replace Text Within a String
+
+-   The PHP str_replace() function replaces some characters with some other characters in a string.
+-   The example below replaces the text "world" with "Dolly".
+
+##### Example
+
+```php
+<html>
+    <body>
+    <?php
+        echo str_replace("world", "Dolly", "Hello world!");
+    ?>
+    </body>
+</html>
+```
+
+###### Output
+
+```
+Hello Dolly!
+```
+
+#### PHP Integer
+
+-   An integer data type is a non-decimal number between -2,147,483,648 and
+    2,147,483,647.
+
+#### Rules for integers
+
+-   An integer must have at least one digit
+-   An integer must not have a decimal point
+-   An integer can be either positive or negative
+-   Integers can be specified in three formats: decimal (10-based), hexadecimal (16-
+    based - prefixed with 0x) or octal (8-based - prefixed with 0)
+-   In the following example $x is an integer. The PHP var_dump() function
+    returns the data type and value.
+
+##### Example
+
+```php
+<html>
+    <body>
+    <?php
+        $x = 5985;
+        var_dump($x);
+    ?>
+    </body>
+</html>
+```
+
+###### Output
+
+```
+int(5985)
+```
+
+#### PHP Float
+
+-   A float (floating point number) is a number with a decimal point or a number in
+    exponential form.
+-   In the following example $x is a float. The PHP var_dump() function returns the
+    data type and value.
+
+##### Example
+
+```php
+<html>
+    <body>
+    <?php
+        $x = 10.365;
+        var_dump($x);
+    ?>
+    </body>
+</html>
+```
+
+###### Output
+
+```
+float(10.365)
+```
+
+##### PHP Boolean
+
+-   A Boolean represents two possible states: TRUE or FALSE.
+
+```
+$x = true;
+$y = false;
+```
+
+-   Booleans are often used in conditional testing.
+
+#### PHP Array
+
+-   An array stores multiple values in one single variable.
+-   An array is a special variable, which can hold more than one value at a time.
+-   If you have a list of items (a list of car names, for example), storing the cars
+    in single variables could look like this.
+
+```php
+$cars1 = "Volvo";
+$cars2 = "BMW";
+$cars3 = "Toyota";
+```
+
+-   However, what if you want to loop through the cars and find a specific one?
+-   And what if you had not 3 cars, but 300?
+-   The solution is to create an array!
+-   An array can hold many values under a single name, and you can access the
+    values by referring to an index number.
+-   In PHP, the array() function is used to create an array:
+    array();
+
+##### Example
+
+```php
+<html>
+    <body>
+    <?php
+        $cars = array("Volvo", "BMW", "Toyota");
+        echo "I like " . $cars[0] . ", " . $cars[1] . " and " . $cars[2] . ".";
+    ?>
+    </body>
+</html>
+```
+
+###### Output
+
+```
+I like Volvo, BMW and Toyota.
+Create an Array in PHP
+```
+
+-   In PHP, there are three types of arrays:
+    -   **Indexed arrays** - Arrays with a numeric index
+    -   **Associative arrays** - Arrays with named keys
+    -   **Multidimensional arrays** - Arrays containing one or more arrays
+
+<hr>

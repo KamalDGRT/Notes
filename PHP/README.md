@@ -367,7 +367,7 @@ float(10.365)
 
 -   A Boolean represents two possible states: TRUE or FALSE.
 
-```
+```php
 $x = true;
 $y = false;
 ```
@@ -412,12 +412,555 @@ $cars3 = "Toyota";
 
 ```
 I like Volvo, BMW and Toyota.
-Create an Array in PHP
 ```
 
 -   In PHP, there are three types of arrays:
     -   **Indexed arrays** - Arrays with a numeric index
     -   **Associative arrays** - Arrays with named keys
     -   **Multidimensional arrays** - Arrays containing one or more arrays
+
+<hr>
+
+### 4. Variables
+
+-   Variables are "containers" for storing information.
+-   Creating (Declaring) PHP Variables : In PHP, a variable starts with the `$` sign,
+    followed by the name of the variable.
+
+##### Example
+
+```php
+<html>
+    <body>
+    <?php
+        $txt = "Hello world!";
+        $x = 5;
+        $y = 10.5;
+        echo $txt;
+        echo "<br>";
+        echo $x;
+        echo "<br>";
+        echo $y;
+    ?>
+    </body>
+</html>
+```
+
+-   After the execution of the statements above
+    -   the variable `$txt` will hold the value `Hello world!`
+    -   the variable `$x` will hold the value `5`
+    -   the variable `$y` will hold the value `10.5`
+
+###### Output
+
+```
+Hello world!
+5
+10.5
+```
+
+##### Note
+
+-   When you assign a text value to a variable, put quotes around the value.
+-   Unlike other programming languages, PHP has no command for declaring a variable.
+-   It is created the moment you first assign a value to it.
+
+#### Rules for PHP variables:
+
+-   A variable can have a short name (like x and y) or a more descriptive name (age,
+    carname, total_volume).
+-   A variable starts with the $ sign, followed by the name of the variable
+-   A variable name must start with a letter or the underscore character
+-   A variable name cannot start with a number
+    A variable name can only contain alpha-numeric characters and underscores (`A`-
+    `z`, `0`-`9`, and `_` )
+-   Variable names are case-sensitive (`$age` and `$AGE` are two different variables)
+
+#### Output Variables
+
+-   The PHP `echo` statement is often used to output data to the screen.
+-   The following example will show how to output text and a variable.
+
+##### Example
+
+```php
+<html>
+    <body>
+    <?php
+        $txt = "Hogwarts";
+        echo "I love $txt!";
+    ?>
+</body>
+</html>
+```
+
+###### Output
+
+```
+I love Hogwarts!
+```
+
+##### Example
+
+```php
+<html>
+    <body>
+    <?php
+        $txt = "Hogwarts";
+        echo "I love " . $txt . "!";
+    ?>
+</body>
+</html>
+```
+
+###### Output
+
+```
+I love Hogwarts!
+```
+
+##### Example
+
+```php
+<html>
+    <body>
+    <?php
+        $x = 5;
+        $y = 4;
+        echo $x + $y;
+    ?>
+    </body>
+</html>
+```
+
+###### Output
+
+```
+9
+```
+
+#### PHP Variables Scope
+
+-   In PHP, variables can be declared anywhere in the script.
+-   The scope of a variable is the part of the script where the variable can be referenced/used.
+-   PHP has three different variable scopes:
+    -   local
+    -   global
+    -   static
+
+#### Global and Local Scope
+
+-   A variable declared outside a function has a GLOBAL SCOPE and can only be accessed outside a function.
+
+##### Example
+
+```php
+<html>
+    <body>
+    <?php
+        $x = 5; // global scope
+        function myTest() {
+            // using x inside this function will generate an error
+            echo "Variable x inside function is: $x";
+        }
+        myTest();
+        echo "Variable x outside function is: $x"; ?>
+    </body>
+</html>
+```
+
+###### Output
+
+```
+Variable x inside function is:
+Variable x outside function is: 5
+```
+
+-   A variable declared within a function has a LOCAL SCOPE and can only be accessed within that function.
+
+##### Example
+
+```php
+<html>
+    <body>
+    <?php
+        function myTest() {
+            $x = 5; // local scope
+            echo "Variable x inside function is: $x";
+        }
+        myTest();
+        // using x outside the function will generate an error
+        echo "Variable x outside function is: $x";
+    ?>
+    </body>
+</html>
+```
+
+###### Output
+
+```
+Variable x inside function is: 5
+Variable x outside function is:
+```
+
+#### The global Keyword
+
+-   The global keyword is used to access a global variable from within a function.
+-   To do this, use the global keyword before the variables (inside the function).
+
+##### Example
+
+```php
+<html>
+    <body>
+    <?php
+        $x = 5;
+        $y = 10;
+
+        function myTest() {
+            global $x, $y;
+            $y = $x + $y;
+        }
+
+        myTest(); // run function
+        echo $y; // output the new value for variable $y
+    ?>
+    </body>
+</html>
+```
+
+###### Output
+
+```
+15
+```
+
+#### The static Keyword
+
+-   Normally, when a function is completed/executed, all of its variables are deleted.
+-   However, sometimes we want a local variable NOT to be deleted. We need it for a
+    further job.
+-   To do this, use the static keyword when you first declare the variable.
+
+##### Example
+
+```php
+<html>
+    <body>
+    <?php
+        function myTest() {
+            static $x = 0;
+            echo $x;
+            $x++;
+        }
+        myTest();
+        echo "<br>";
+        myTest();
+        echo "<br>";
+        myTest();
+    ?>
+    </body>
+</html>
+```
+
+###### Output
+
+```
+0
+1
+2
+```
+
+#### `echo` and `print` Statements
+
+-   In PHP there are two basic ways to get output: `echo` and `print`.
+-   In most of the examples here we have used `echo` (and `print`).
+-   `echo` and `print` are more or less the same.
+-   They are both used to output data to the screen.
+-   The differences are small:
+    -   `echo` has no return value while `print` has a return value of 1 so it can be used in expressions.
+    -   `echo` can take multiple parameters (although such usage is rare) while `print` can take one argument.
+    -   `echo` is marginally faster than `print`.
+
+#### `echo` Statement
+
+-   The `echo` statement can be used with or without parentheses: `echo` or `echo()`.
+
+#### Display Text
+
+-   The following example shows how to output text with the `echo` command (notice that the
+    text can contain HTML markup).
+
+##### Example
+
+```php
+<html>
+    <body>
+    <?php
+        echo "PHP is Fun!<br>";
+        echo "Hello world!<br>";
+        echo "I'm about to learn PHP!<br>";
+        echo "This ", "string ", "was ", "made ", "with multiple parameters.";
+    ?>
+    </body>
+</html>
+```
+
+###### Output
+
+```
+PHP is Fun!
+Hello world!
+I'm about to learn PHP!
+This string was made with multiple parameters.
+```
+
+#### Display Variables
+
+-   The following example shows how to output text and variables with the echo statement.
+
+##### Example
+
+```php
+<html>
+    <body>
+    <?php
+        $txt1 = "Learn PHP";
+        $txt2 = "Hogwarts";
+        $x = 5;
+        $y = 4;
+        echo "<h2>" . $txt1 . "</h2>";
+        echo "Study PHP at " . $txt2 . "<br>";
+        echo $x + $y;
+    ?>
+</body>
+</html>
+```
+
+###### Output
+
+```
+Learn PHP
+Study PHP at Hogwarts
+9
+```
+
+#### The PHP `print` Statement
+
+-   The `print` statement can be used with or without parentheses: `print` or `print()`.
+
+##### Display Text
+
+-   The following example shows how to output text with the `print` command (notice that the
+    text can contain HTML markup).
+
+##### Example
+
+```php
+<html>
+    <body>
+    <?php
+        print "<h2>PHP is Fun!</h2>";
+        print "Hello world!<br>";
+        print "I'm about to learn PHP!";
+    ?>
+    </body>
+</html>
+```
+
+###### Output
+
+```
+PHP is Fun!
+Hello world!
+I'm about to learn PHP!
+```
+
+##### Display Variables
+
+-   The following example shows how to output text and variables with the `print` statement.
+
+##### Example
+
+```php
+<html>
+    <body>
+    <?php
+        $txt1 = "Learn PHP";
+        $txt2= "Hogwarts";
+        $x = 5;
+        $y = 4;
+        print "<h2>" . $txt1 . "</h2>";
+        print "Study PHP at " . $txt2 . "<br>";
+        print $x + $y;
+    ?>
+    </body>
+</html>
+```
+
+###### Output
+
+```
+Learn PHP
+Study PHP at Hogwarts
+9
+```
+
+#### PHP Object
+
+-   An object is a data type which stores data and information on how to process that data.
+-   In PHP, an object must be explicitly declared.
+-   First we must declare a class of object.
+-   For this, we use the class keyword.
+-   A class is a structure that can contain properties and methods.
+
+##### Example
+
+```php
+<html>
+    <body>
+    <?php
+        class Car {
+            function Car() {
+                $this->model = "VW";
+            }
+        }
+
+        // create an object
+        $herbie = new Car();
+        // show object properties
+        echo $herbie->model;
+    ?>
+</body>
+</html>
+```
+
+###### Output
+
+```
+VW
+```
+
+#### PHP NULL Value
+
+-   Null is a special data type which can have only one value: NULL.
+-   A variable of data type NULL is a variable that has no value assigned to it.
+-   If a variable is created without a value, it is automatically assigned a value of NULL.
+-   Variables can also be emptied by setting the value to NULL.
+
+##### Example
+
+```php
+<html>
+    <body>
+    <?php
+        $x = "Hello world!";
+        $x = null;
+        var_dump($x);
+    ?>
+    </body>
+</html>
+```
+
+###### Output
+
+```
+NULL
+```
+
+#### Constants
+
+-   Constants are like variables except that once they are defined they cannot be changed or undefined.
+
+#### PHP Constants
+
+-   A constant is an identifier (name) for a simple value.
+-   The value cannot be changed during the script.
+-   A valid constant name starts with a letter or underscore (no `$` sign before the constant name).
+-   Note: Unlike variables, constants are automatically global across the entire script.
+
+#### Create a PHP Constant
+
+-   To create a constant, use the define() function.
+-   Syntax
+    ```php
+        define(name, value, case-insensitive)
+    ```
+
+##### Parameters:
+
+-   `name`: Specifies the name of the constant
+-   `value`: Specifies the value of the constant
+-   `case-insensitive`: Specifies whether the constant name should be case- insensitive. Default is false.
+-   The example below creates a constant with a case-sensitive name.
+
+##### Example
+
+```php
+<html>
+    <body>
+    <?php
+        // case-sensitive constant name
+        define("GREETING", "Welcome to Hogwarts!");
+        echo GREETING;
+    ?>
+    </body>
+</html>
+```
+
+###### Output
+
+```
+Welcome to Hogwarts!
+```
+
+-   The example below creates a constant with a case-insensitive name:
+
+##### Example
+
+```php
+<html>
+    <body>
+    <?php
+        // case-insensitive constant name
+        define("GREETING", "Welcome to Hogwarts!", true);
+        echo greeting;
+    ?>
+    </body>
+</html>
+```
+
+###### Output
+
+```
+Welcome to Hogwarts!
+```
+
+#### Constants are Global
+
+-   Constants are automatically global and can be used across the entire script.
+-   The example below uses a constant inside a function, even if it is defined outside the function.
+
+##### Example
+
+```php
+<html>
+    <body>
+    <?php
+        define("GREETING", "Welcome to Hogwarts!");
+        function myTest() {
+            echo GREETING;
+        }
+        myTest();
+    ?>
+</body>
+</html>
+```
+
+###### Output
+
+```
+Welcome to Hogwarts!
+```
 
 <hr>

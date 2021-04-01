@@ -21,13 +21,9 @@ PHP is a widely-used, free, and efficient alternative to competitors such as Mic
 ##### Example
 
 ```php
-<html>
-    <body>
-        <?php
-            echo "Hellow World!";
-        ?>
-    </body>
-</html>
+    <?php
+        echo "Hellow World!";
+    ?>
 ```
 
 ##### What You Should Already Know
@@ -138,7 +134,7 @@ install a database, such as MySQL
 ?>
 ```
 
-###### Output
+##### Output
 
 ```
 10
@@ -168,8 +164,6 @@ install a database, such as MySQL
 ##### Example
 
 ```php
-<html>
-    <body>
     <?php
         $x = "Hello world!";
         $y = 'Hello world!';
@@ -177,11 +171,9 @@ install a database, such as MySQL
         echo "<br>";
         echo $y;
     ?>
-    </body>
-</html>
 ```
 
-###### Output
+##### Output
 
 ```
 Hello world!
@@ -197,16 +189,12 @@ Hello world!
 ##### Example
 
 ```php
-<html>
-    <body>
     <?php
         echo strlen("Hello world!");
     ?>
-    </body>
-</html>
 ```
 
-###### Output
+##### Output
 
 ```
 12
@@ -219,16 +207,12 @@ Hello world!
 ##### Example
 
 ```php
-<html>
-    <body>
-    <?php
-        echo str_word_count("Hello world!");
-    ?>
-    </body>
-</html>
+<?php
+    echo str_word_count("Hello world!");
+?>
 ```
 
-###### Output
+##### Output
 
 ```
 2
@@ -241,16 +225,12 @@ Hello world!
 ##### Example
 
 ```php
-<html>
-    <body>
-    <?php
-        echo strrev("Hello world!");
-    ?>
-    </body>
-</html>
+<?php
+    echo strrev("Hello world!");
+?>
 ```
 
-###### Output
+##### Output
 
 ```
 !dlrow olleH
@@ -266,16 +246,12 @@ Hello world!
 ##### Example
 
 ```php
-<html>
-    <body>
-    <?php
-        echo strpos("Hello world!", "world");
-    ?>
-    </body>
-</html>
+<?php
+    echo strpos("Hello world!", "world");
+?>
 ```
 
-###### Output
+##### Output
 
 ```
 6
@@ -289,16 +265,12 @@ Hello world!
 ##### Example
 
 ```php
-<html>
-    <body>
-    <?php
-        echo str_replace("world", "Dolly", "Hello world!");
-    ?>
-    </body>
-</html>
+<?php
+    echo str_replace("world", "Dolly", "Hello world!");
+?>
 ```
 
-###### Output
+##### Output
 
 ```
 Hello Dolly!
@@ -322,17 +294,13 @@ Hello Dolly!
 ##### Example
 
 ```php
-<html>
-    <body>
-    <?php
-        $x = 5985;
-        var_dump($x);
-    ?>
-    </body>
-</html>
+<?php
+    $x = 5985;
+    var_dump($x);
+?>
 ```
 
-###### Output
+##### Output
 
 ```
 int(5985)
@@ -348,17 +316,13 @@ int(5985)
 ##### Example
 
 ```php
-<html>
-    <body>
-    <?php
-        $x = 10.365;
-        var_dump($x);
-    ?>
-    </body>
-</html>
+<?php
+    $x = 10.365;
+    var_dump($x);
+?>
 ```
 
-###### Output
+##### Output
 
 ```
 float(10.365)
@@ -399,17 +363,13 @@ $cars3 = "Toyota";
 ##### Example
 
 ```php
-<html>
-    <body>
-    <?php
-        $cars = array("Volvo", "BMW", "Toyota");
-        echo "I like " . $cars[0] . ", " . $cars[1] . " and " . $cars[2] . ".";
-    ?>
-    </body>
-</html>
+<?php
+    $cars = array("Volvo", "BMW", "Toyota");
+    echo "I like " . $cars[0] . ", " . $cars[1] . " and " . $cars[2] . ".";
+?>
 ```
 
-###### Output
+##### Output
 
 ```
 I like Volvo, BMW and Toyota.
@@ -431,20 +391,16 @@ I like Volvo, BMW and Toyota.
 ##### Example
 
 ```php
-<html>
-    <body>
-    <?php
-        $txt = "Hello world!";
-        $x = 5;
-        $y = 10.5;
-        echo $txt;
-        echo "<br>";
-        echo $x;
-        echo "<br>";
-        echo $y;
-    ?>
-    </body>
-</html>
+<?php
+    $txt = "Hello world!";
+    $x = 5;
+    $y = 10.5;
+    echo $txt;
+    echo "<br>";
+    echo $x;
+    echo "<br>";
+    echo $y;
+?>
 ```
 
 -   After the execution of the statements above
@@ -452,7 +408,7 @@ I like Volvo, BMW and Toyota.
     -   the variable `$x` will hold the value `5`
     -   the variable `$y` will hold the value `10.5`
 
-###### Output
+##### Output
 
 ```
 Hello world!
@@ -485,17 +441,13 @@ Hello world!
 ##### Example
 
 ```php
-<html>
-    <body>
-    <?php
-        $txt = "Hogwarts";
-        echo "I love $txt!";
-    ?>
-</body>
-</html>
+<?php
+    $txt = "Hogwarts";
+    echo "I love $txt!";
+?>
 ```
 
-###### Output
+##### Output
 
 ```
 I love Hogwarts!
@@ -504,17 +456,13 @@ I love Hogwarts!
 ##### Example
 
 ```php
-<html>
-    <body>
-    <?php
-        $txt = "Hogwarts";
-        echo "I love " . $txt . "!";
-    ?>
-</body>
-</html>
+<?php
+    $txt = "Hogwarts";
+    echo "I love " . $txt . "!";
+?>
 ```
 
-###### Output
+##### Output
 
 ```
 I love Hogwarts!
@@ -523,18 +471,14 @@ I love Hogwarts!
 ##### Example
 
 ```php
-<html>
-    <body>
-    <?php
-        $x = 5;
-        $y = 4;
-        echo $x + $y;
-    ?>
-    </body>
-</html>
+<?php
+    $x = 5;
+    $y = 4;
+    echo $x + $y;
+?>
 ```
 
-###### Output
+##### Output
 
 ```
 9
@@ -556,21 +500,18 @@ I love Hogwarts!
 ##### Example
 
 ```php
-<html>
-    <body>
-    <?php
-        $x = 5; // global scope
-        function myTest() {
-            // using x inside this function will generate an error
-            echo "Variable x inside function is: $x";
-        }
-        myTest();
-        echo "Variable x outside function is: $x"; ?>
-    </body>
-</html>
+<?php
+    $x = 5; // global scope
+    function myTest() {
+        // using x inside this function will generate an error
+        echo "Variable x inside function is: $x";
+    }
+    myTest();
+    echo "Variable x outside function is: $x";
+?>
 ```
 
-###### Output
+##### Output
 
 ```
 Variable x inside function is:
@@ -582,22 +523,18 @@ Variable x outside function is: 5
 ##### Example
 
 ```php
-<html>
-    <body>
-    <?php
-        function myTest() {
-            $x = 5; // local scope
-            echo "Variable x inside function is: $x";
-        }
-        myTest();
-        // using x outside the function will generate an error
-        echo "Variable x outside function is: $x";
-    ?>
-    </body>
-</html>
+<?php
+    function myTest() {
+        $x = 5; // local scope
+        echo "Variable x inside function is: $x";
+    }
+    myTest();
+    // using x outside the function will generate an error
+    echo "Variable x outside function is: $x";
+?>
 ```
 
-###### Output
+##### Output
 
 ```
 Variable x inside function is: 5
@@ -612,25 +549,21 @@ Variable x outside function is:
 ##### Example
 
 ```php
-<html>
-    <body>
-    <?php
-        $x = 5;
-        $y = 10;
+<?php
+    $x = 5;
+    $y = 10;
 
-        function myTest() {
-            global $x, $y;
-            $y = $x + $y;
-        }
+    function myTest() {
+        global $x, $y;
+        $y = $x + $y;
+    }
 
-        myTest(); // run function
-        echo $y; // output the new value for variable $y
-    ?>
-    </body>
-</html>
+    myTest(); // run function
+    echo $y; // output the new value for variable $y
+?>
 ```
 
-###### Output
+##### Output
 
 ```
 15
@@ -646,25 +579,21 @@ Variable x outside function is:
 ##### Example
 
 ```php
-<html>
-    <body>
-    <?php
-        function myTest() {
-            static $x = 0;
-            echo $x;
-            $x++;
-        }
-        myTest();
-        echo "<br>";
-        myTest();
-        echo "<br>";
-        myTest();
-    ?>
-    </body>
-</html>
+<?php
+    function myTest() {
+        static $x = 0;
+        echo $x;
+        $x++;
+    }
+    myTest();
+    echo "<br>";
+    myTest();
+    echo "<br>";
+    myTest();
+?>
 ```
 
-###### Output
+##### Output
 
 ```
 0
@@ -674,7 +603,8 @@ Variable x outside function is:
 
 #### `echo` and `print` Statements
 
--   In PHP there are two basic ways to get output: `echo` and `print`.
+##### - In PHP there are two basic ways to get output: `echo` and `print`
+
 -   In most of the examples here we have used `echo` (and `print`).
 -   `echo` and `print` are more or less the same.
 -   They are both used to output data to the screen.
@@ -695,19 +625,15 @@ Variable x outside function is:
 ##### Example
 
 ```php
-<html>
-    <body>
-    <?php
-        echo "PHP is Fun!<br>";
-        echo "Hello world!<br>";
-        echo "I'm about to learn PHP!<br>";
-        echo "This ", "string ", "was ", "made ", "with multiple parameters.";
-    ?>
-    </body>
-</html>
+<?php
+    echo "PHP is Fun!<br>";
+    echo "Hello world!<br>";
+    echo "I'm about to learn PHP!<br>";
+    echo "This ", "string ", "was ", "made ", "with multiple parameters.";
+?>
 ```
 
-###### Output
+##### Output
 
 ```
 PHP is Fun!
@@ -723,22 +649,18 @@ This string was made with multiple parameters.
 ##### Example
 
 ```php
-<html>
-    <body>
-    <?php
-        $txt1 = "Learn PHP";
-        $txt2 = "Hogwarts";
-        $x = 5;
-        $y = 4;
-        echo "<h2>" . $txt1 . "</h2>";
-        echo "Study PHP at " . $txt2 . "<br>";
-        echo $x + $y;
-    ?>
-</body>
-</html>
+<?php
+    $txt1 = "Learn PHP";
+    $txt2 = "Hogwarts";
+    $x = 5;
+    $y = 4;
+    echo "<h2>" . $txt1 . "</h2>";
+    echo "Study PHP at " . $txt2 . "<br>";
+    echo $x + $y;
+?>
 ```
 
-###### Output
+##### Output
 
 ```
 Learn PHP
@@ -758,18 +680,14 @@ Study PHP at Hogwarts
 ##### Example
 
 ```php
-<html>
-    <body>
-    <?php
-        print "<h2>PHP is Fun!</h2>";
-        print "Hello world!<br>";
-        print "I'm about to learn PHP!";
-    ?>
-    </body>
-</html>
+<?php
+    print "<h2>PHP is Fun!</h2>";
+    print "Hello world!<br>";
+    print "I'm about to learn PHP!";
+?>
 ```
 
-###### Output
+##### Output
 
 ```
 PHP is Fun!
@@ -784,22 +702,18 @@ I'm about to learn PHP!
 ##### Example
 
 ```php
-<html>
-    <body>
-    <?php
-        $txt1 = "Learn PHP";
-        $txt2= "Hogwarts";
-        $x = 5;
-        $y = 4;
-        print "<h2>" . $txt1 . "</h2>";
-        print "Study PHP at " . $txt2 . "<br>";
-        print $x + $y;
-    ?>
-    </body>
-</html>
+<?php
+    $txt1 = "Learn PHP";
+    $txt2= "Hogwarts";
+    $x = 5;
+    $y = 4;
+    print "<h2>" . $txt1 . "</h2>";
+    print "Study PHP at " . $txt2 . "<br>";
+    print $x + $y;
+?>
 ```
 
-###### Output
+##### Output
 
 ```
 Learn PHP
@@ -818,25 +732,23 @@ Study PHP at Hogwarts
 ##### Example
 
 ```php
-<html>
-    <body>
-    <?php
-        class Car {
-            function Car() {
-                $this->model = "VW";
-            }
+<?php
+    class Car {
+        function Car() {
+            $this->model = "VW";
         }
+    }
 
-        // create an object
-        $herbie = new Car();
-        // show object properties
-        echo $herbie->model;
-    ?>
-</body>
-</html>
+    // create an object
+    $herbie = new Car();
+    // show object properties
+    echo $herbie->model;
+?>
+
+
 ```
 
-###### Output
+##### Output
 
 ```
 VW
@@ -892,18 +804,14 @@ VW
 ##### Example
 
 ```php
-<html>
-    <body>
-    <?php
-        $x = "Hello world!";
-        $x = null;
-        var_dump($x);
-    ?>
-    </body>
-</html>
+<?php
+    $x = "Hello world!";
+    $x = null;
+    var_dump($x);
+?>
 ```
 
-###### Output
+##### Output
 
 ```
 NULL
@@ -938,18 +846,14 @@ NULL
 ##### Example
 
 ```php
-<html>
-    <body>
-    <?php
-        // case-sensitive constant name
-        define("GREETING", "Welcome to Hogwarts!");
-        echo GREETING;
-    ?>
-    </body>
-</html>
+<?php
+    // case-sensitive constant name
+    define("GREETING", "Welcome to Hogwarts!");
+    echo GREETING;
+?>
 ```
 
-###### Output
+##### Output
 
 ```
 Welcome to Hogwarts!
@@ -960,18 +864,14 @@ Welcome to Hogwarts!
 ##### Example
 
 ```php
-<html>
-    <body>
-    <?php
-        // case-insensitive constant name
-        define("GREETING", "Welcome to Hogwarts!", true);
-        echo greeting;
-    ?>
-    </body>
-</html>
+<?php
+    // case-insensitive constant name
+    define("GREETING", "Welcome to Hogwarts!", true);
+    echo greeting;
+?>
 ```
 
-###### Output
+##### Output
 
 ```
 Welcome to Hogwarts!
@@ -985,20 +885,16 @@ Welcome to Hogwarts!
 ##### Example
 
 ```php
-<html>
-    <body>
-    <?php
-        define("GREETING", "Welcome to Hogwarts!");
-        function myTest() {
-            echo GREETING;
-        }
-        myTest();
-    ?>
-</body>
-</html>
+<?php
+    define("GREETING", "Welcome to Hogwarts!");
+    function myTest() {
+        echo GREETING;
+    }
+    myTest();
+?>
 ```
 
-###### Output
+##### Output
 
 ```
 Welcome to Hogwarts!
@@ -1110,3 +1006,404 @@ arithmetical operations, such as addition, subtraction, multiplication etc.
 | `!=`     | Inequality   | `$x != $y`  | Returns `true` if `$x` is not equal to `$y`                                                           |
 | `<>`     | Inequality   | `$x <> $y`  | Returns `true` if `$x` is not equal to `$y`                                                           |
 | `!==`    | Non-identity | `$x !== $y` | Returns `true` if `$x` is not identical to `$y`                                                       |
+
+<hr>
+
+### PHP Conditional Statements
+
+-   Very often when you write code, you want to perform different actions for
+    different conditions.
+-   You can use conditional statements in your code to do this.
+
+#### In PHP we have the following conditional statements:
+
+-   `if` statement - executes some code if one condition is true
+-   `if...else` statement - executes some code if a condition is true and another code
+    if that condition is false
+-   `if...elseif....else` statement - executes different codes for more than two conditions
+-   `switch` statement - selects one of many blocks of code to be executed
+
+#### The if Statement
+
+-   The if statement executes some code if one condition is true.
+
+##### Syntax
+
+```php
+if (condition) {
+    // code to be executed if condition is true;
+}
+```
+
+-   The example below will output "Have a good day!" if the current time (HOUR) is
+    less than 20.
+
+##### Example
+
+```php
+<?php
+    $t = date("H");
+    if ($t < "20") {
+        echo "Have a good day!";
+    }
+?>
+```
+
+##### Output
+
+```
+Have a good day!
+```
+
+#### The if...else Statement
+
+-   The if....else statement executes some code if a condition is true and another code
+    if that condition is false.
+
+##### Syntax
+
+```php
+if (condition) {
+    // code to be executed if condition is true;
+} else {
+    // code to be executed if condition is false;
+}
+```
+
+-   The example below will output "Have a good day!" if the current time is less than 20,
+    and "Have a good night!" otherwise.
+
+##### Example
+
+```php
+<?php
+    $t = date("H");
+    if ($t < "20") {
+        echo "Have a good day!";
+    } else {
+        echo "Have a good night!";
+    }
+?>
+```
+
+##### Output
+
+```
+Have a good day!
+```
+
+#### The if... elseif ....else Statement
+
+-   The if.... elseif... else statement executes different codes for more than two conditions.
+
+##### Syntax
+
+```php
+if (condition) {
+    // code to be executed if this condition is true;
+} else if (condition) {
+    // code to be executed if this condition is true;
+} else {
+    // code to be executed if all conditions are false;
+}
+```
+
+-   The example below will output "Have a good morning!" if the current time is less than
+    10, and "Have a good day!" if the current time is less than 20.
+-   Otherwise it will output "Have a good night!".
+
+##### Example
+
+```php
+<?php
+    $t = date("H");
+    echo "<p>The hour (of the server) is " . $t;
+    echo ", and will give the following message:</p>";
+    if ($t < "10") {
+        echo "Have a good morning!";
+    }   elseif ($t < "20") {
+        echo "Have a good day!";
+    }  else {
+        echo "Have a good night!";
+    }
+?>
+```
+
+##### Output
+
+```
+The hour (of the server) is 01, and will give the following message:
+Have a good morning!
+```
+
+#### The switch Statement
+
+-   The switch statement is used to perform different actions based on
+    different conditions.
+
+-   Use the switch statement to select one of many blocks of code to be executed.
+
+##### Syntax
+
+```php
+switch (n) {
+    case label1:
+        // code to be executed if n=label1;
+        break;
+    case label2:
+        // code to be executed if n=label2;
+        break;
+    case label3:
+        // code to be executed if n=label3;
+        break;
+    ...
+    default:
+        // code to be executed if n is different from all labels;
+}
+```
+
+##### This is how it works:
+
+-   First we have a single expression n (most often a variable), that is
+    evaluated once.
+-   The value of the expression is then compared with the values for each
+    case in the structure.
+-   If there is a match, the block of code associated with that case is
+    executed.
+-   Use break to prevent the code from running into the next case automatically.
+-   The default statement is used if no match is found.Example
+
+```php
+<?php
+    $favcolor = "red";
+    switch ($favcolor) {
+        case "red":
+            echo "Your favorite color is red!";
+            break;
+        case "blue":
+            echo "Your favorite color is blue!";
+            break;
+        case "green":
+            echo "Your favorite color is green!";
+            break;
+        default:
+            echo "Your favorite color is neither red, blue, nor green!";
+    }
+?>
+```
+
+##### Output
+
+```
+Your favorite color is red!
+```
+
+#### PHP Loops
+
+-   Often when you write code, you want the same block of code to run over and over again
+    in a row.
+-   Instead of adding several almost equal code-lines in a script, we can use loops
+    to perform a task like this.
+-   In PHP, we have the following looping statements:
+    -   `while` - loops through a block of code as long as the specified condition is true
+    -   `do...while` - loops through a block of code once, and then repeats the loop as
+        long as the specified condition is true
+    -   `for` - loops through a block of code a specified number of times
+    -   `foreach` - loops through a block of code for each element in an array
+
+#### The PHP while Loop
+
+The while loop executes a block of code as long as the specified condition is
+true.
+
+##### Syntax
+
+```php
+while (condition is true) {
+    // code to be executed;
+}
+```
+
+- The example below first sets a variable `$x` to 1 (`$x = 1`). 
+- Then, the while loop will continue to run as long as `$x` is less than, or equal to `5` (`$x <= 5`). 
+- `$x` will increase by 1 each time the loop runs (`$x++`).
+
+##### Example
+
+```php
+<?php
+    $x = 1;
+    while($x <= 5) {
+        echo "The number is: $x<br>";
+        $x++;
+    }
+?>
+```
+
+##### Output
+
+```
+The number is: 1
+The number is: 2
+The number is: 3
+The number is: 4
+The number is: 5
+```
+
+#### The PHP do...while Loop
+
+-   The do...while loop will always execute the block of code once, it will then check the
+    condition, and repeat the loop while the specified condition is true.
+
+##### Syntax
+
+```php
+do {
+    // code to be executed;
+} while (condition is true);
+```
+
+-   The example below first sets a variable `$x` to `1` (`$x = 1`).
+-   Then, the do while loop will write some output, and then increment the variable `$x` with 1.
+-   Then the condition is checked (is `$x` less than, or equal to 5?),
+    and the loop will continue to run as long as `$x` is less than,
+    or equal to 5:
+
+##### Example
+
+```php
+<?php
+    $x = 1;
+    do {
+        echo "The number is: $x <br>";
+        $x++;
+    } while ($x <= 5);
+?>
+```
+
+##### Output
+
+```
+The number is: 1
+The number is: 2
+The number is: 3
+The number is: 4
+The number is: 5
+```
+
+-   Notice that in a do while loop the condition is tested AFTER executing the statements
+    within the loop.
+-   This means that the do while loop would execute its statements at least
+    once, even if the condition is false the first time.
+-   The example below sets the `$x` variable to `6`, then it runs the loop, and then the
+    condition is checked.
+
+##### Example
+
+```php
+<?php
+    $x = 6;
+    do {
+        echo "The number is: $x <br>";
+        $x++;
+    } while ($x <= 5);
+?>
+```
+
+##### Output
+
+```
+The number is: 6
+```
+
+#### for Loops
+
+-   PHP for loops execute a block of code a specified number of times.
+
+#### The PHP for Loop
+
+-   The for loop is used when you know in advance how many times the script
+    should run.
+
+##### Syntax
+
+```php
+    for (init counter; test counter; increment counter) {
+        // code to be executed;
+    }
+```
+
+##### Parameters
+
+-   `init counter`: Initialize the loop counter value
+-   `test counter`: Evaluated for each loop iteration. If it evaluates to TRUE, the
+    loop continues. If it evaluates to FALSE, the loop ends.
+-   `increment counter`: Increases the loop counter value
+
+-   The example below displays the numbers from 0 to 10:
+
+##### Example
+
+```php
+<?php
+    for ($x = 0; $x <= 10; $x++) {
+        echo "The number is: $x <br>";
+    }
+?>
+```
+
+##### Output
+
+```
+The number is: 0
+The number is: 1
+The number is: 2
+The number is: 3
+The number is: 4
+The number is: 5
+The number is: 6
+The number is: 7
+The number is: 8
+The number is: 9
+The number is: 10
+```
+
+#### The PHP foreach Loop
+
+-   The foreach loop works only on arrays, and is used to loop through each
+    key/value pair in an array.
+
+##### Syntax
+
+```php
+foreach ($array as $value)
+{
+    // code to be executed;
+}
+```
+
+-   For every loop iteration, the value of the current array element is assigned to
+    `$value` and the array pointer is moved by one, until it reaches the last array
+    element.
+-   The following example demonstrates a loop that will output the values of the
+    given array (`$colors`):
+
+##### Example
+
+```php
+<?php
+    $colors = array("red", "green", "blue", "yellow");
+    foreach ($colors as $value) {
+        echo "$value <br>";
+    }
+?>
+```
+
+##### Output
+
+```
+red
+green
+blue
+yellow
+```

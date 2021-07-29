@@ -30,3 +30,32 @@ for each number in the series if it is prime (or) composite.
     -   (d) If control had come out of step (c) because the loop was completed,
         print `Prime`, else print `Composite`.
     -   (e) Stop
+
+
+### Output
+
+```nim
+                        FIBONACCI SERIES AND PRIME CHECK
+                        --------- ------ --- ----- -----
+
+
+
+        Enter number of Terms : 10
+
+   Fibonacci Series                     Prime check
+   --------- ------                     ----- -----
+
+        0                       Neither Prime Nor Composite
+        1                       Neither Prime Nor Composite
+        1                       Neither Prime Nor Composite
+        2                               Prime Number
+        3                               Prime Number
+        5                               Prime Number
+        8                               Composite Number
+        13                              Prime Number
+        21                              Composite Number
+        34                              Composite Number
+
+
+Want to continue ? Press (1) then. 2
+```

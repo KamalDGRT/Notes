@@ -1,36 +1,41 @@
 # MariaDB Reference Notes (MySql)
 
 ## About MySql
+
 MySQL is a Swedish company. The name of the parent company that created this DB is MySQL AB. The first version of the software was launched in May 1995. Currently, MySQL is managed by Oracle.
 
 ## About MariaDB
+
 MariaDB is forked out of MySQL. So, there are lot of similarities between these two databases.
 
 ---
 
 ## Common Data Types
-|Data Type| Description|
-|----------|---------|
-|char (Character) |Fixed width string value. Values of this type is enclosed in single quotes. For ex. Anu’s will be written as ‘Anu’ ‘s’.|
-|varchar |Variable width character string. This is similar to char except the size of the data entry vary considerably.|
-|dec (Decimal)|It represents a fractional number such as 15.12, 0.123 etc. Here the size argument consist of two parts : precision and scale. The precision indicates how many digits the number may have and the scale indicates the maximum number of digits to the right of the decimal point. The size (5, 2) indicates precision as 5 and scale as 2. The scale cannot exceed the precision.
-|numeric|It is same as decimal except that the maximum number of digits may not exceed the precision argument.|
-|int (Integer)|It represents a number without a decimal point. Here the size argument is not used.
-|smallint |It is same as integer but the default size may be smaller than Integer.
-|float|It represents a floating point number in base 10 exponential notation and may define a precision up to a maximum of 64.
-|real |It is same as float, except the size argument is not used and may define a precision up to a maximum of 64.|
-|double|Same as real except the precision may exceed 64.|
-|DATE| It is used to specify date format YYYY-MM-DD. Its supported range is from '1000-01-01' to '9999-12-31'.|
+
+| Data Type        | Description                                                                                                                                                                                                                                                                                                                                                                        |
+| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| char (Character) | Fixed width string value. Values of this type is enclosed in single quotes. For ex. Anu’s will be written as ‘Anu’ ‘s’.                                                                                                                                                                                                                                                            |
+| varchar          | Variable width character string. This is similar to char except the size of the data entry vary considerably.                                                                                                                                                                                                                                                                      |
+| dec (Decimal)    | It represents a fractional number such as 15.12, 0.123 etc. Here the size argument consist of two parts : precision and scale. The precision indicates how many digits the number may have and the scale indicates the maximum number of digits to the right of the decimal point. The size (5, 2) indicates precision as 5 and scale as 2. The scale cannot exceed the precision. |
+| numeric          | It is same as decimal except that the maximum number of digits may not exceed the precision argument.                                                                                                                                                                                                                                                                              |
+| int (Integer)    | It represents a number without a decimal point. Here the size argument is not used.                                                                                                                                                                                                                                                                                                |
+| smallint         | It is same as integer but the default size may be smaller than Integer.                                                                                                                                                                                                                                                                                                            |
+| float            | It represents a floating point number in base 10 exponential notation and may define a precision up to a maximum of 64.                                                                                                                                                                                                                                                            |
+| real             | It is same as float, except the size argument is not used and may define a precision up to a maximum of 64.                                                                                                                                                                                                                                                                        |
+| double           | Same as real except the precision may exceed 64.                                                                                                                                                                                                                                                                                                                                   |
+| DATE             | It is used to specify date format YYYY-MM-DD. Its supported range is from '1000-01-01' to '9999-12-31'.                                                                                                                                                                                                                                                                            |
 
 ---
 
 ## About SQL Commands
+
 **Five types of SQL queries:**
-1) Data Definition Language (DDL)
-2) Data Manipulation Language (DML)
-3) Data Control Language(DCL)
-4) Transaction Control Language(TCL)
-5) Data Query Language (DQL)
+
+1. Data Definition Language (DDL)
+2. Data Manipulation Language (DML)
+3. Data Control Language(DCL)
+4. Transaction Control Language(TCL)
+5. Data Query Language (DQL)
 
 **DDL commands:**
 `CREATE`, `DROP`, `ALTER`, `TRUNCATE`, `RENAME`
@@ -52,15 +57,20 @@ MariaDB is forked out of MySQL. So, there are lot of similarities between these 
 ## Basic SQL Commands
 
 #### CREATE
+
 `CREATE` is as keyword to create database and table
+
 ```sql
 MariaDB [(none)]> CREATE DATABASE dbms_sample;
 Query OK, 1 row affected (0.024 sec)
 ```
+
 Here, the `dbms_sample` is a user-defined name (Any name can be given but database name with lower case is recommended)
 
 #### SHOW DATABASES
+
 `SHOW DATABASES` is a query to list all databases in the server
+
 ```sql
 MariaDB [(none)]> show databases;
 +--------------------+
@@ -76,7 +86,9 @@ MariaDB [(none)]> show databases;
 ```
 
 #### USE
+
 `USE` is a keyword to use a specified database.
+
 ```sql
 MariaDB [(none)]> USE dbms_sample;
 Database changed
@@ -84,15 +96,20 @@ MariaDB [dbms_sample]>
 ```
 
 #### CREATE TABLE
+
 `CREATE TABLE` is a keyword to create table(s) inside the database
+
 ```sql
 MariaDB [dbms_sample]> CREATE TABLE sample (number int, name char(25));
 Query OK, 0 rows affected (0.297 sec)
 ```
+
 Here, the `dbms_sample`, `number`, `name` is a user-defined name (Any name can be given to table name and column name but it is recommended to name with lower case)
 
 #### SHOW TABLES
+
 `SHOW TABLES` is a query to list all tables in the database
+
 ```sql
 MariaDB [dbms_sample]> SHOW tables;
 +-----------------------+
@@ -104,7 +121,9 @@ MariaDB [dbms_sample]> SHOW tables;
 ```
 
 #### DESC
+
 `DESC` is a keyword to describe the table. Alternatively, we can use `DESCRIBE` and `EXPLAIN`.
+
 ```language
 MariaDB [dbms_sample]> DESC sample;
 +--------+----------+------+-----+---------+-------+
@@ -118,19 +137,25 @@ MariaDB [dbms_sample]> DESC sample;
 ```
 
 #### INSERT
+
 `INSERT` is a keyword to add data into the table.
+
 ```sql
 MariaDB [dbms_sample]> INSERT INTO sample values(1, "Manoj");
 Query OK, 1 row affected (0.057 sec)
 ```
+
 Inserting data to particular column only
+
 ```sql
 MariaDB [dbms_sample]> INSERT INTO sample (name) values ("Paramsetti");
 Query OK, 1 row affected (0.058 sec)
 ```
 
 #### SELECT
+
 `SELECT` is a keyword to show table(s)
+
 ```sql
 MariaDB [dbms_sample]> SELECT * FROM sample;
 +--------+------------+
@@ -143,7 +168,9 @@ MariaDB [dbms_sample]> SELECT * FROM sample;
 ```
 
 #### UPDATE
+
 `UPDATE` is a keyword to update a value in table
+
 ```sql
 MariaDB [dbms_sample]> UPDATE sample SET number=2 WHERE name="Paramsetti";
 Query OK, 1 row affected (0.094 sec)
@@ -158,10 +185,13 @@ MariaDB [dbms_sample]> SELECT * FROM sample;
 +--------+------------+
 2 rows in set (0.001 sec)
 ```
+
 If `WHERE` is not specified then all the tuples will be updated
 
 #### DELETE
+
 `DELETE` is a keyword to remove tuples.
+
 ```sql
 MariaDB [dbms_sample]> DELETE FROM sample WHERE number=2;
 Query OK, 1 row affected (0.054 sec)
@@ -174,17 +204,22 @@ MariaDB [dbms_sample]> SELECT * FROM sample;
 +--------+-------+
 1 row in set (0.001 sec)
 ```
+
 If `WHERE` is not mentioned then all the data in the table will be deleted
 
 #### ALTER
+
 `ALTER` is a keyword to modify the structure of the table.<br>
 In alter we can do with 4 things
-- `ADD COLUMN`
-- `MODIFY`
-- `RENAME COLUMN`
-- `DROP COLUMN`
-- `RENAME` | (Table Name)
+
+-   `ADD COLUMN`
+-   `MODIFY`
+-   `RENAME COLUMN`
+-   `DROP COLUMN`
+-   `RENAME` | (Table Name)
+
 ##### ALTER (ADD COLUMN)
+
 ```sql
 MariaDB [dbms_sample]> ALTER TABLE sample ADD department varchar(5);
 Query OK, 0 rows affected (0.094 sec)
@@ -200,7 +235,9 @@ MariaDB [dbms_sample]> EXPLAIN sample;
 +------------+-------------+------+-----+---------+-------+
 3 rows in set (0.002 sec)
 ```
+
 ##### ALTER (MODIFY)
+
 ```sql
 MariaDB [dbms_sample]> ALTER TABLE sample MODIFY department varchar(40);
 Query OK, 0 rows affected (0.122 sec)
@@ -216,7 +253,9 @@ MariaDB [dbms_sample]> DESCRIBE sample;
 +------------+-------------+------+-----+---------+-------+
 3 rows in set (0.002 sec)
 ```
+
 ##### ALTER (RENAME)
+
 ```sql
 MariaDB [dbms_sample]> ALTER TABLE sample RENAME COLUMN department TO class;
 Query OK, 0 rows affected (0.171 sec)
@@ -234,6 +273,7 @@ MariaDB [dbms_sample]> DESC sample;
 ```
 
 ##### ALTER (RENAME TABLE NAME)
+
 ```sql
 MariaDB [dbms_sample]> ALTER TABLE sample RENAME TO class;
 Query OK, 0 rows affected (0.200 sec)
@@ -248,6 +288,7 @@ MariaDB [dbms_sample]> SHOW tables;
 ```
 
 ##### ALTER (DROP COLUMN)
+
 ```sql
 MariaDB [dbms_sample]> ALTER TABLE sample DROP COLUMN class;
 Query OK, 0 rows affected (0.110 sec)
@@ -264,7 +305,9 @@ MariaDB [dbms_sample]> DESC sample;
 ```
 
 #### TRUNCATE
+
 `TRUNCATE` will delete all the data but it will not modify the structure of the table
+
 ```sql
 MariaDB [dbms_sample]> TRUNCATE class;
 Query OK, 0 rows affected (0.703 sec)
@@ -274,8 +317,10 @@ Empty set (0.116 sec)
 ```
 
 #### DROP TABLE
+
 `DROP TABLE` will delete all the data including the structure of the table.
 <br>It is not recommended to use `DROP TABLE` every time, `TRUNCATE` first and then use `DROP TABLE`
+
 ```sql
 MariaDB [dbms_sample]> DROP TABLE class;
 Query OK, 0 rows affected (0.093 sec)
@@ -285,29 +330,36 @@ Empty set (0.001 sec)
 ```
 
 ### Comments
+
 Comment part will be ignored in the SQL queries. we can use this to
 describe the commands.
 
 ##### In SQL it has two types of comments
-1) Single line comments
-2) Multi line comments
+
+1. Single line comments
+2. Multi line comments
 
 #### Single Line Comments
+
 Single line comments will ignore the complete one line. We have
-to add `--` in the start to represent it is a comment. If the comment 
+to add `--` in the start to represent it is a comment. If the comment
 is added at the end of the query, then the query will
 ignore only the comment part and not the query
+
 ```sql
 MariaDB [dbms_sample]> --create table with name as char with the length of 25 and register number with the integer type
 MariaDB [dbms_sample]> CREATE TABLE student (name char(25), registerName int);
 Query OK, 0 rows affected (0.714 sec)
 ```
+
 Here the SQL ignored the first line completely.
 
 #### Multi Line Comment
+
 Multi line comment will ignore some part of lines with
 `/*COMMENT*/` as syntax. we can ignore only some part of text in one line which will not
 consider the full line as comment
+
 ```sql
 MariaDB [dbms_sample]> DESC student /*describing the table*/;
 +--------------+----------+------+-----+---------+-------+
@@ -320,6 +372,7 @@ MariaDB [dbms_sample]> DESC student /*describing the table*/;
 ```
 
 Here `/*describing the table*/` part is ignored
+
 ```sql
 MariaDB [dbms_sample]> /* Insert 2 students data inside the student table
    /*> Name: Manoj, Reg No: 40110901
@@ -333,34 +386,42 @@ Query OK, 1 row affected (0.340 sec)
 ```
 
 Here the below lines are comments
+
 ```sql
 /* Insert 2 students data inside the student table
    /*> Name: Manoj, Reg No: 40110901
    /*> Name: Paramsetti, Reg No: 40110902
    /*> */
 ```
+
 ---
+
 ## Keys & Constraints
+
 Constraint will allow data with some condition
 
 #### There are two ways of constraining:
->1) Column constraint: **Column constraint** will constraints only to column at a time
 
->2) Table constraint: **Table constraint** will declare the
-constraints the two or more column at same time
+> 1.  Column constraint: **Column constraint** will constraints only to column at a time
+
+> 2.  Table constraint: **Table constraint** will declare the
+>     constraints the two or more column at same time
 
 #### Types of constraints:
-- `UNIQUE`
-- `PRIMARY KEY`
-- `DEFAULT`
-- `CHECK`
-- `NOT NULL`
-- `FOREIGN KEY`
-- `ALTERNATE KEY`
-- `COMPOSITE KEY` | (Table constraint)
+
+-   `UNIQUE`
+-   `PRIMARY KEY`
+-   `DEFAULT`
+-   `CHECK`
+-   `NOT NULL`
+-   `FOREIGN KEY`
+-   `ALTERNATE KEY`
+-   `COMPOSITE KEY` | (Table constraint)
 
 #### NOT NULL
+
 `NOT NULL` will not allow empty data in the specified column
+
 ```sql
 MariaDB [dbms_sample]> CREATE TABLE student (registerNo int(8) NOT NULL, name char(30));
 Query OK, 0 rows affected (0.197 sec)
@@ -372,10 +433,13 @@ Query OK, 1 row affected (0.353 sec)
 MariaDB [dbms_sample]> INSERT INTO student (name) VALUES ("Manoj");
 ERROR 1364 (HY000): Field 'registerNo' doesn't have a default value
 ```
+
 Here, In third line we haven't passed registerNo data. So, the tuple is not inserted into the table
 
 #### UNIQUE
+
 `UNIQUE` Constraint will allow duplication in the specified column and shows warning
+
 ```sql
 MariaDB [dbms_sample]> CREATE TABLE student1 (name char(25), registerNumber int UNIQUE);
 Query OK, 0 rows affected (0.749 sec)
@@ -388,11 +452,14 @@ ERROR 1062 (23000): Duplicate entry '40110901' for key 'registerNumber'
 ```
 
 #### ALTERNATE KEY
+
 Alternate key is method to have one or more columns has unique to represent one tuple.
 but all the unique key aren't `PRIMARY KEY`. `PRIMARY KEY` is strictly allocated to only one column
 
 #### PRIMARY KEY
+
 `PRIMARY KEY` Constraint will not allow duplication in the specified column. Primary key is allowed to only one column
+
 ```sql
 MariaDB [dbms_sample]> CREATE TABLE student2 (name char(25), registerNumber int NOT NULL PRIMARY KEY);
 Query OK, 0 rows affected (0.234 sec)
@@ -411,7 +478,9 @@ ERROR 1136 (21S01): Column count doesn't match value count at row 1
 ```
 
 #### DEFAULT
+
 `DEFAULT` is a keyword to add default value for a column. If the value is not specified, it will take the default value.
+
 ```sql
 MariaDB [dbms_sample]> CREATE TABLE college (collegeName char(25) DEFAULT "Sathyabama", registerNumber int(10));
 Query OK, 0 rows affected (0.375 sec)
@@ -438,7 +507,9 @@ MariaDB [dbms_sample]> SELECT * FROM college;
 ```
 
 #### CHECK
+
 `CHECK` is a keyword to allow only the specified data for a particular column
+
 ```sql
 MariaDB [dbms_sample]> CREATE TABLE batch24 (registerNumber int, age int(2) CHECK (age = 19));
 Query OK, 0 rows affected (0.315 sec)
@@ -451,6 +522,7 @@ ERROR 4025 (23000): CONSTRAINT `batch24.age` failed for `dbms_sample`.`batch24`
 ```
 
 #### FOREIGN KEY
+
 `FOREIGN KEY` is used to take only the primary key values presented in mentioned column. This values can be duplicated but it should contain the data in the derived table
 
 ```sql
@@ -492,9 +564,9 @@ ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint f
 ```
 
 #### COMPOSITE KEY
+
 `COMPOSITE KEY` is a method to assign constraints for the columns. It is mentioned at the last while creating a new table. where either two or more column should have different data from previous tuples. In the below queries, registerNo and mobileNo column combines and makes a UNIQUE key. We can also use `PRIMARY KEY` in this columns because two or more columns are treated as one `PRIMARY KEY` column
 `Eg: registerNo-mobileNo (40110901-1212101920)`
-
 
 ```sql
 MariaDB [dbms_sample]> CREATE TABLE student3 (registerNo int, mobileNo int(10), name char(50), UNIQUE (registerNo, mobileNo));
@@ -515,7 +587,9 @@ ERROR 1062 (23000): Duplicate entry '40110901-1212101920' for key 'registerNo'
 ## Clauses
 
 #### WHERE
+
 `WHERE` is a keyword to apply condition on query
+
 ```sql
 MariaDB [dbms_sample]> SELECT * FROM student3;
 +------------+------------+------------+
@@ -536,7 +610,9 @@ MariaDB [dbms_sample]> SELECT * FROM student3 WHERE registerNo=40110901;
 ```
 
 #### AND
+
 `AND` is a keyword used to check between two condition. It will be true, when two condition satisfies
+
 ```sql
 MariaDB [dbms_sample]> SELECT * FROM student3;
 +------------+------------+------------+
@@ -557,7 +633,9 @@ MariaDB [dbms_sample]> SELECT * FROM student3 WHERE registerNo=40110901 AND mobi
 ```
 
 #### OR
+
 `AND` is a keyword used to check between two condition. It will be true, when at least one condition is satisfied
+
 ```sql
 MariaDB [dbms_sample]> SELECT * FROM student3;
 +------------+------------+------------+
@@ -579,7 +657,9 @@ MariaDB [dbms_sample]> SELECT * FROM student3 WHERE registerNo=40110901 OR mobil
 ```
 
 #### AS
+
 `AS` is a keyword to give temporary name to column
+
 ```sql
 MariaDB [dbms_sample]> select * from student;
 +------------+------------+
@@ -607,6 +687,7 @@ MariaDB [dbms_sample]> select registerNo as regno, name as StudentName from stud
 ```
 
 #### Sub Query
+
 ```sql
 MariaDB [dbms_sample]> SELECT * FROM student1;
 +------------+----------------+
@@ -633,14 +714,15 @@ MariaDB [dbms_sample]> SELECT * FROM student1 WHERE registerNumber=(SELECT regis
 +------------+----------------+
 1 row in set (0.043 sec)
 ```
+
 ---
 
 ## SQL JOIN
 
 For this topic, I'm using two new table with more columns
 
-
 **TABLE 1 | (Course1)**
+
 ```sql
 +------------+-------------+--------------+---------+
 | RegisterNo | StudentName | EnrolledDate | BatchNo |
@@ -656,6 +738,7 @@ For this topic, I'm using two new table with more columns
 ```
 
 **Table 2 | (course1_teachers)**
+
 ```sql
 +----------+---------------+---------+
 | staff_id | staff_name    | BatchNo |
@@ -668,12 +751,15 @@ For this topic, I'm using two new table with more columns
 ```
 
 **Graphical Representation for Join Types:**
+
 <p align="center">
    <img src='https://letsdobigdata.files.wordpress.com/2016/03/joins.png?w=800'></img>
 </p>
 
 #### INNER JOIN
+
 Inner join is a method to get the intersection between two data. In the below example, I'm trying to display the teacher assigned for each student
+
 ```sql
 MariaDB [dbms_sample]> SELECT staff_id, staff_name, RegisterNo, C.BatchNo, StudentName FROM course1_teachers c, Course1 C WHERE c.BatchNo = C.BatchNo;
 +----------+---------------+------------+---------+-------------+
@@ -690,7 +776,9 @@ MariaDB [dbms_sample]> SELECT staff_id, staff_name, RegisterNo, C.BatchNo, Stude
 ```
 
 #### LEFT JOIN
+
 `LEFT JOIN` is a keyword to show A difference B of the table
+
 ```sql
 MariaDB [dbms_sample]> SELECT B.staff_id, B.staff_name, A.RegisterNo, A.BatchNo, A.StudentName FROM Course1 A LEFT JOIN course1_teachers B ON A.BatchNo = B.BatchNo;
 +----------+---------------+------------+---------+-------------+
@@ -708,7 +796,9 @@ MariaDB [dbms_sample]> SELECT B.staff_id, B.staff_name, A.RegisterNo, A.BatchNo,
 ```
 
 #### RIGHT JOIN
+
 `RIGHT JOIN` is a keyword to show B difference A of the table
+
 ```sql
 MariaDB [dbms_sample]> SELECT B.staff_id, B.staff_name, A.RegisterNo, B.BatchNo, A.StudentName FROM Course1 A RIGHT JOIN course1_teachers B ON A.BatchNo = B.BatchNo;
 +----------+---------------+------------+---------+-------------+
@@ -726,7 +816,9 @@ MariaDB [dbms_sample]> SELECT B.staff_id, B.staff_name, A.RegisterNo, B.BatchNo,
 ```
 
 #### FULL JOIN
+
 FULL JOIN is a method to combine two tables. In simple words `LEFT JOIN` table and `RIGHT JOIN` table are taken union (A U B)
+
 ```sql
 MariaDB [dbms_sample]> SELECT * FROM Course1 LEFT JOIN course1_teachers
     -> ON Course1.BatchNo = course1_teachers.BatchNo
@@ -750,9 +842,11 @@ MariaDB [dbms_sample]> SELECT * FROM Course1 LEFT JOIN course1_teachers
 ```
 
 #### CROSS JOIN
+
 `CROSS JOIN` is a keyword and method for Cartesian Product between two table. In simple words all row are mapped with another table's row
 
 **With CROSS JOIN keyword**
+
 ```sql
 MariaDB [dbms_sample]> SELECT * FROM Course1 CROSS JOIN course1_teachers;
 +------------+-------------+--------------+---------+----------+---------------+---------+
@@ -791,6 +885,7 @@ MariaDB [dbms_sample]> SELECT * FROM Course1 CROSS JOIN course1_teachers;
 ```
 
 **Without CROSS JOIN Keyword**
+
 ```sql
 MariaDB [dbms_sample]> SELECT * FROM Course1, course1_teachers;
 +------------+-------------+--------------+---------+----------+---------------+---------+
@@ -828,14 +923,16 @@ MariaDB [dbms_sample]> SELECT * FROM Course1, course1_teachers;
 28 rows in set (0.001 sec)
 ```
 
---- 
+---
 
 ### More `SELECT` Queries
 
 #### CONCAT
+
 `CONCAT` is a key word to join string
+
 ```sql
-MariaDB [dbms_sample]>  SELECT CONCAT ('FIRST', 'SECOND');  
+MariaDB [dbms_sample]>  SELECT CONCAT ('FIRST', 'SECOND');
 +----------------------------+
 | CONCAT ('FIRST', 'SECOND') |
 +----------------------------+
@@ -845,7 +942,9 @@ MariaDB [dbms_sample]>  SELECT CONCAT ('FIRST', 'SECOND');
 ```
 
 #### UNIQUE & DISTINCT
+
 `UNIQUE` & `DISTINCT` are the keywords to get the unique or distinct values in the specified column
+
 ```sql
 MariaDB [dbms_sample]> SELECT UNIQUE BatchNo FROM Course1;
 +---------+
@@ -873,7 +972,9 @@ MariaDB [dbms_sample]> SELECT DISTINCT BatchNo FROM Course1;
 ```
 
 #### COUNT
+
 `COUNT` is a built-in function to count the number of entries
+
 ```sql
 MariaDB [dbms_sample]> SELECT COUNT(*) FROM Course1;
 +----------+
@@ -894,7 +995,9 @@ MariaDB [dbms_sample]> SELECT COUNT(*) FROM Course1 where BatchNo=2;
 ```
 
 #### IN
+
 `IN` is a keyword to check the matched data in the array
+
 ```sql
 MariaDB [dbms_sample]> SELECT * FROM Course1 WHERE EnrolledDate IN ('2020-08-08', '2020-08-09');
 +------------+-------------+--------------+---------+
@@ -910,7 +1013,9 @@ MariaDB [dbms_sample]> SELECT * FROM Course1 WHERE EnrolledDate IN ('2020-08-08'
 ```
 
 #### MAX
+
 `MAX` is a built-in function to check the maximum value in the specified column
+
 ```sql
 MariaDB [sandeep]> SELECT * FROM student;
 +------+---------+
@@ -934,7 +1039,9 @@ MariaDB [sandeep]> SELECT MAX(sid) FROM student;
 ```
 
 #### MIN
+
 `MIN` is a built-in function to check the minimum value in the specified column
+
 ```sql
 MariaDB [sandeep]> SELECT * FROM student;
 +------+---------+
@@ -958,7 +1065,9 @@ MariaDB [sandeep]> SELECT MIN(sid) FROM student;
 ```
 
 #### SUM
+
 `SUM` is a built-in function to add all the values of column
+
 ```sql
 MariaDB [sandeep]> SELECT * FROM sales;
 +----------------------+-------+
@@ -982,6 +1091,7 @@ MariaDB [sandeep]> SELECT SUM(Price) FROM sales;
 ```
 
 #### ORDER BY | (Descending)
+
 `ORDER BY` with `DESC` will show the specified column(s) in descending order
 
 ```sql
@@ -1002,7 +1112,9 @@ MariaDB [dbms_sample]> SELECT * FROM Course1 ORDER BY EnrolledDate DESC;
 ```
 
 #### ORDER BY | (Ascending)
+
 `ORDER BY` with `ASC` will show the specified column(s) in ascending order
+
 ```sql
 MariaDB [dbms_sample]> SELECT * FROM Course1 ORDER BY EnrolledDate ASC;
 +------------+-------------+--------------+---------+
@@ -1020,7 +1132,9 @@ MariaDB [dbms_sample]> SELECT * FROM Course1 ORDER BY EnrolledDate ASC;
 ```
 
 #### ORDER BY | (RANDOM)
+
 `RAND()` is a built-in function to give tuples in random order
+
 ```sql
 MariaDB [dbms_sample]> SELECT * FROM Course1 ORDER BY RAND();
 +------------+-------------+--------------+---------+
@@ -1038,7 +1152,9 @@ MariaDB [dbms_sample]> SELECT * FROM Course1 ORDER BY RAND();
 ```
 
 #### LIMIT
+
 `LIMIT` is a keyword to limit the selected data
+
 ```sql
 MariaDB [dbms_sample]> SELECT * FROM Course1 LIMIT 3;
 +------------+-------------+--------------+---------+
@@ -1052,6 +1168,7 @@ MariaDB [dbms_sample]> SELECT * FROM Course1 LIMIT 3;
 ```
 
 #### Copy another table
+
 ```sql
 MariaDB [dbms_sample]> INSERT INTO course2_teachers SELECT * FROM course1_teachers C;
 Query OK, 4 rows affected (0.060 sec)
@@ -1070,7 +1187,9 @@ MariaDB [dbms_sample]> SELECT * FROM course2_teachers;
 ```
 
 #### GROUP BY
+
 The `GROUP BY` statement groups rows that have the same values into summary rows, like "find the number of customers in each country". The `GROUP BY` statement is often used with aggregate functions (`COUNT()`, `MAX()`, `MIN()`, `SUM()`, `AVG()`) to group the result-set by one or more columns.
+
 ```sql
 MariaDB [dbms_sample]> SELECT * FROM Course1 GROUP BY BatchNo;
 +------------+-------------+--------------+---------+
@@ -1094,9 +1213,11 @@ MariaDB [dbms_sample]> SELECT count(*), BatchNo FROM Course1 GROUP BY BatchNo;
 +----------+---------+
 4 rows in set (0.001 sec)
 ```
+
 ---
 
 ## References
+
 [SQL Tutorial - JavaPoint](https://www.javatpoint.com/sql-tutorial)
 <br>
 [SQL Group By - W3Schools](https://www.w3schools.com/sql/sql_groupby.asp)

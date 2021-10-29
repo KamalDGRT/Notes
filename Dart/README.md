@@ -16,19 +16,19 @@
 
 ### Contents:
 
--   Setup
--   Fundamental
--   Data Types
--   String
--   Type Conversion
--   Constant
--   Null
--   Operators
--   Loop
--   Collection [list, set, Map]
--   Function
--   Class
--   Exceptional Handling
+- Setup
+- Fundamental
+- Data Types
+- String
+- Type Conversion
+- Constant
+- Null
+- Operators
+- Loop
+- Collection [list, set, Map]
+- Function
+- Class
+- Exceptional Handling
 
 <hr>
 
@@ -125,11 +125,11 @@ For example: Python, Ruby, JavaScript
 
 **In Dart programming language, there are 5 basic types:**
 
--   int
--   double
--   String
--   bool
--   dynamic
+- int
+- double
+- String
+- bool
+- dynamic
 
 After a data-type is assigned using var and the type is recognized, then
 you can't assign a new type later.
@@ -167,6 +167,28 @@ To define a raw string, put a r in front of the string.
 <br>
 i.e, if a `\n` is there, then it won't be evaluated.
 I think it applies to all whitespace characters.
+
+Let's say you want to print a string without any formatting,
+then at that time you can prefix it with a `r` in the front.
+
+Example:
+
+```dart
+void main() {
+  var S3 = r"It\'s \n easy!";
+  var S4 = "It\'s \n easy!";
+  print('String 3 -  $S3');
+  print('String 4 - $S4');
+}
+```
+
+##### Output
+
+```
+String 3 -  It\'s \n easy!
+String 4 - It's
+ easy!
+```
 
 <hr>
 
@@ -563,9 +585,9 @@ void main() {
 
 There are 3 built-in collection types in Dart Language:
 
--   Lists
--   Sets
--   Maps
+- Lists
+- Sets
+- Maps
 
 <hr>
 
@@ -730,8 +752,8 @@ void showOutput(var msg) {
 
 There are 2 types of parameters in dart programming language:
 
--   Positional Parameter/Argument
--   Named Parameter/Argument
+- Positional Parameter/Argument
+- Named Parameter/Argument
 
 <hr>
 
@@ -825,8 +847,8 @@ final
 
 There are two ways to define a constant:
 
--   Using final keyword
--   Using Const keyword
+- Using final keyword
+- Using Const keyword
 
 There's a difference in both ways<br>
 In `const`, it happens at compile time and once assigned it cannot be

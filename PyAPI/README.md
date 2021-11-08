@@ -232,3 +232,217 @@ def create_post(payLoad: dict = Body(...)):
 -   The data isn't getting validated.
 -   We ultimately want to force the client to send data in a schema
     that we expect.
+
+We can use `pydantic` to define how our schema should look like.
+
+> **Note:** `pydantic` has nothing to do with `FastAPI`. It is its own
+> complete separate library that you can use with any of your Python
+> applications.
+
+---
+
+### Example of pydantic in FastAPI application
+
+```py
+# https://fastapi.tiangolo.com/tutorial/first-steps/
+
+from fastapi import FastAPI
+from pydantic import BaseModel
+from typing import Optional
+
+
+class Post(BaseModel):
+    """
+    A pydantic model that does the part of data
+    validation.
+
+    It is because of this we can ensure that whatever
+    data is sent by the frontend is in compliance
+    with the backend.
+    """
+    title: str
+    content: str
+    published: bool = True
+    rating: Optional[int] = None
+
+
+app = FastAPI()
+
+
+@app.get("/")
+async def root():
+    return {"message": "Hello World"}
+
+
+# This is the content that I gave in the Body -> Raw -> JSON in the Postman
+#  Feel free to test out with vallues of different types.
+# {
+#     "title": "Yii2 Framework",
+#     "content": "Yii2 is one of the top 5 PHP Frameworks",
+#     "rating": 4
+# }
+@app.post('/createpost')
+def create_post(post: Post):
+    post.dict()   # Converts a pydantic model to a dictionary
+    return {
+        "data": post
+    }
+```
+
+---
+
+### CRUD application
+
+-   Concepts covered:
+    -   What they are
+    -   Standard conventions when it comes to creating an API for a CRUD
+        based application.
+
+![CRUD](https://i.imgur.com/tUAuhqM.jpg)
+
+CRUD - It is an acronym that represents the 4 main functions of an
+application:
+
+-   Create
+-   Read
+-   Update
+-   Delete
+
+-   ##### Difference between a PUT and a PATCH request
+
+-   PUT - All fields have to be sent to the API
+-   PATCH - Just the specific field(s)
+
+-   ##### Path Parameter
+
+-   Arguments that are passed in path operations.
+-   Example: in `/post/{id}`, `{id}` is a path parameter.
+
+-   #### Important Points
+
+-   It is always recommended to check the type of data before passing
+    to the function to fetch or add stuff.
+-   Make sure to give proper response codes while perfoming the operations:
+    -   201 - Create
+    -   404 - Not found
+    -   401 - Empty
+
+---
+
+### A simple CRUD using arrays
+
+```py
+# https://fastapi.tiangolo.com/tutorial/first-steps/
+
+from fastapi import FastAPI, status, HTTPException, Response
+from pydantic import BaseModel
+from typing import Optional
+from random import randrange
+
+
+class Post(BaseModel):
+    """
+    A pydantic model that does the part of data
+    validation.
+
+    It is because of this we can ensure that whatever
+    data is sent by the frontend is in compliance
+    with the backend.
+    """
+    title: str
+    content: str
+    published: bool = True
+    rating: Optional[int] = None
+
+
+my_posts = [
+    {
+        "title": "title of post 1",
+        "content": "content of post 1",
+        "id": 1
+    },
+    {
+        "title": "favorite foods",
+        "content": "I like pizza",
+        "id": 2
+    }
+]
+
+
+def find_post(id):
+    for post in my_posts:
+        if post['id'] == id:
+            return post
+
+
+def find_index_post(id):
+    for index, post in enumerate(my_posts):
+        if post['id'] == id:
+            return index
+
+
+app = FastAPI()
+
+
+@app.get("/")
+async def root():
+    return {"message": "Hello World"}
+
+
+@app.get('/posts')
+def get_posts():
+    return {
+        "data": my_posts
+    }
+
+
+@app.post('/post/create', status_code=status.HTTP_201_CREATED)
+def create_post(post: Post):
+    post_dict = post.dict()
+    post_dict['id'] = randrange(0, 10000000)
+    my_posts.append(post_dict)
+    return {"data": post_dict}
+
+
+# {id} is a path parameter
+@app.get('/post/{id}')
+def get_post(id: int):
+    post = find_post(id)
+    if not post:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                            detail=f"Post with id: {id} not found!")
+    return {
+        "post_detail": post
+    }
+
+
+@app.delete('/post/delete/{id}', status_code=status.HTTP_204_NO_CONTENT)
+def delete_post(id: int):
+    # find the index in the array that has the required id
+    # my_posts.pop(index)
+    index = find_index_post(id)
+    if index is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                            detail=f"Post with id: {id} does not exist!")
+
+    my_posts.pop(index)
+    return Response(status_code=status.HTTP_204_NO_CONTENT)
+
+
+# make sure to add some body in the postman to check it.
+@app.put('/post/update/{id}')
+def update_post(id: int, post: Post):
+    index = find_index_post(id)
+
+    if index is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                            detail=f"Post with id: {id} does not exist!")
+
+    post_dict = post.dict()  # take all data from frotend
+    post_dict['id'] = id   # add the id
+    my_posts[index] = post_dict  # updating the post in the array using index
+
+    return {
+        'data': post_dict
+    }
+```

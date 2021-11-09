@@ -541,3 +541,36 @@ and managed.
 -   Databases have datatypes just like any programming language.
 
 ![Datatypes](https://i.imgur.com/ENrzmUD.png)
+
+#### Primary Key
+
+-   It is a column or a group of columns that uniquely identifies each row
+    in a table.
+-   A table can have one and only one primary key.
+
+![Primary Key](https://i.imgur.com/vUQlKsL.png)
+
+-   A primary key does not have to be the ID column always.
+-   It is upto you to decide which column uniquey defines each record.
+-   In this example, since an email only be registered once, the email
+    column can also be used as the primary key.
+
+![Primary Key](https://i.imgur.com/7Dyz9ZT.png)
+
+#### UNIQUE Constraints
+
+-   A UNIQUE constraint can be applied to any column to make sure every
+    record has a unique value for that column.
+
+![Unique](https://i.imgur.com/xEtFqkg.png)
+
+#### NULL Constraints
+
+-   By default, when adding a new entry to a database, any column can be
+    left blank.
+-   When a column is left blank, it has a `NULL` value.
+-   If you need column to be properly filled in to create a new record, a
+    `NOT NULL` constraint can be added to the column to ensure that the
+    column is never left blank
+
+![NULL](https://i.imgur.com/u3aK4RP.png)

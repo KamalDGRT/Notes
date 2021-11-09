@@ -446,3 +446,98 @@ def update_post(id: int, post: Post):
         'data': post_dict
     }
 ```
+
+---
+
+### What is a Database?
+
+Database is a collection of organized data that can be easily accessed
+and managed.
+
+---
+
+### DBMS
+
+-   We don't work or interact with the databases directly.
+-   Instead, we make use of a software referred to as a
+    Database Management System (DBMS).
+-   DBMS provides an interface to perform various operations like
+    database creation, storing data in it, updating data, creating
+    a table in the database and a lot more.
+
+![DBMS](https://i.imgur.com/v1vfzR8.png)
+
+#### Popular DBMS
+
+-   ##### Relational DBMS
+
+    -   MySQL
+    -   PostgreSQL
+    -   Oracle
+    -   SQL Server
+
+-   ##### NoSQL
+    -   MongoDB
+    -   DynamoDB
+    -   Cassandra
+    -   Apache HBase
+
+#### Relational Database & SQL
+
+-   A relational database organizes data into tables which can be
+    linked—or related—based on data common to each.
+-   This capability enables you to retrieve an entirely new table
+    from data in one or more tables with a single SQL query.
+-   You can communicate with relational databases using Structured Query
+    Language (SQL), the standard language for interacting with management
+    systems.
+-   SQL allows the joining of tables using a few lines of code.
+
+![SQL](https://i.imgur.com/NA6tAnt.png)
+
+#### Posrgres
+
+-   When you install an instance of Postgres, what we can actually do is, we
+    can carve out multiple separate databases.
+-   This is kind of confusing at first because we think if we install
+    Postgres, we have a database.
+-   Yes. But what we can do is we can create 2 different databases that are
+    completely isolated and have nothing to do with one another.
+-   In that way, if I have an application 1, I can have a database just for
+    App1 and If I have a second application, this can application can have
+    a separate database as well.
+-   There might be some cases where you might need to have 2 databases for an
+    appliction. But those are specific cases. In this course, we will be just
+    using one database for the application.
+
+![Pg](https://i.imgur.com/r4IsHY4.png)
+
+-   By default, every Postgres installation comes with one database already
+    created called `postgres`.
+-   This is important because Postgres requires you to specify the name of a
+    database to make a connection.
+-   So, there needs to always be one database.
+-   Usually Postgres runs on port `5432`.
+
+#### Tables
+
+-   A table represents a subject or event in an application.
+-   Example: In an e-commerce application you will be having a table for
+    users, products and purchases; plus they would be having a relationship
+    that links them. Like, A user will be purchasing a product.
+
+![tables](https://i.imgur.com/fjVBzVM.png)
+
+#### Columns and Rows
+
+-   A table is made up columns and rows.
+-   Each column represents a different attribute.
+-   Each row represents represents a different entry in the table.
+
+![columns and rows](https://i.imgur.com/5KyueWH.png)
+
+#### Postgres Datatypes
+
+-   Databases have datatypes just like any programming language.
+
+![Datatypes](https://i.imgur.com/ENrzmUD.png)

@@ -574,3 +574,140 @@ and managed.
     column is never left blank
 
 ![NULL](https://i.imgur.com/u3aK4RP.png)
+
+---
+
+### SQL Stuff
+
+-   Number -> integer
+-   Primary key with auto increment -> serial
+-   Created a table `products` with lots of values and some fields.
+-   Semicolon must be there end of each query.
+-   `*` means all columns.
+-   Capitalization doesn't matter. But, for built in SQL commands,
+    lower case is also fine but it is better to capitalize it.
+    For stuff like the table name, column name it is better to
+    write it in the lowercase everywhere.
+
+-   #### SELECT
+
+    -   To fetch all the records with all the columns from a table:
+
+        ##### Syntax:
+
+        ```sql
+        SELECT * FROM <table-name>;
+        ```
+
+        ##### Example:
+
+        ```sql
+        SELECT * FROM products;
+        ```
+
+    -   Renaming the column
+
+        ```sql
+        SELECT id AS products_id FROM products;
+        ```
+
+    -   Adding Filters [`WHERE` Query]
+
+        ```sql
+        SELECT * FROM products WHERE id = 10;
+        ```
+
+-   For strings add quotes.
+
+-   #### Comparison operators
+
+    -   Fetching the records that have price greater than 50.
+
+        ```sql
+        SELECT * FROM products WHERE price > 50;
+        ```
+
+    -   Fetching the records that have some value in the inventory.
+
+        ```sql
+        SELECT * FROM products WHERE inventory != 0;
+        ```
+
+        or
+
+        ```sql
+        SELECT * FROM products WHERE inventory <> 0;
+        ```
+
+    -   `<>` can also be used as not equal to operator.
+
+-   #### IN Operator
+
+    ```sql
+    SELECT * FROM products WHERE id IN (1, 2, 3);
+    ```
+
+-   Fetching matching substrings
+    ```sql
+    SELECT * FROM products WHERE name LIKE 'TV%';
+    ```
+-   The `%` can be used in various ways. `%word`, `%word%`, `word%`
+
+-   Sorting out the records
+
+    ```sql
+    SELECT * FROM products ORDER BY price DESC;
+    ```
+
+    > By default the sorting order is Ascending.
+    > `ASC` can be used to specify though.
+
+    ```sql
+    SELECT * FROM products ORDER BY inventory DESC, price;
+    ```
+
+-   Fetching recent products
+
+    ```sql
+    SELECT * FROM products ORDER BY created_at DESC;
+    ```
+
+-   Limiting the records
+
+    ```sql
+    SELECT * FROM products LIMIT 10;
+    ```
+
+-   Skipping some rows.
+
+    ```sql
+    SELECT * FROM products ORDER BY id LIMIT 5 OFFSET 2;
+    ```
+
+-   #### INSERT Query
+
+    -   Inserting One Record
+
+    ```sql
+    INSERT INTO products (name, price, inventory)
+    VALUES ('Tortilla', 4, 100);
+    ```
+
+    -   Inserting multipe records
+
+    ```sql
+    INSERT INTO products (name, price, inventory)
+    VALUES ('Tortilla', 4, 100), ('Toys', 50, 200);
+    ```
+
+-   Deleting entries from the database
+
+    ```sql
+    DELETE FROM products WHERE id='25';
+    ```
+
+-   Updating records
+    ```sql
+    UPDATE products set name = 'Flour Tortilla', price = 40
+    WHERE id = 4;
+    ```

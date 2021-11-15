@@ -1007,8 +1007,8 @@ The project folder will look something like this.
 ├── app/
 │    ├─  __init__.py
 │    ├─  database.py
-├─   ├─  main.py
-│    └── moodels.py
+│    ├─  main.py
+│    └── models.py
 ├── env/
 ├── .gitignore
 └── README.md
@@ -1261,6 +1261,8 @@ def update_post(id: int, post: Post):
     }
 ```
 
+---
+
 ### SQLAlchemy or ORM implementation of the API
 
 #### main.py
@@ -1464,3 +1466,44 @@ def update_post(id: int, updated_post: Post, db: Session = Depends(get_db)):
         'data': post_query.first()
     }
 ```
+
+---
+
+### Schema Models
+
+-   Schema/Pydantic models define the structure of a request and response.
+-   This ensure that when a user wants to create a post, the request will
+    only go through if it has a "title" and "content" in the body.
+
+![Schema Models](https://i.imgur.com/obaeove.png)
+
+---
+
+### SQLAlchemy Models
+
+-   Responsible for defining the columns of our `posts` table within postgres.
+-   Is used to query, create, delete and update entries within the database.
+
+![SQLAlchemy Models](https://i.imgur.com/5dIH60a.png)
+
+---
+
+### Folder Restructure
+
+The project folder will look something like this.
+
+```nim
+├── app/
+│    ├─  __init__.py
+│    ├─  database.py
+│    ├─  main.py
+│    ├─  models.py
+│    └── schema.py
+├── env/
+├── .gitignore
+└── README.md
+```
+
+-   The `Post` pydantic class present in `main.py` is moved to `schemas.py`
+    and the appropriate import statements are added and changed in `main.py`
+    and `schemas.py`

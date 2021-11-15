@@ -449,6 +449,27 @@ def update_post(id: int, post: Post):
 
 ---
 
+### Folder Restructring
+
+The project folder has been restructured to look like this.
+
+```nim
+├── app/
+│    ├─  __init__.py
+│    └── main.py
+├── env/
+├── .gitignore
+└── README.md
+```
+
+So, to execute the code from the project root, we do this:
+
+```
+uvicorn app.main:app --reload
+```
+
+---
+
 ### What is a Database?
 
 Database is a collection of organized data that can be easily accessed
@@ -507,7 +528,7 @@ and managed.
     App1 and If I have a second application, this can application can have
     a separate database as well.
 -   There might be some cases where you might need to have 2 databases for an
-    appliction. But those are specific cases. In this course, we will be just
+    application. But those are specific cases. In this course, we will be just
     using one database for the application.
 
 ![Pg](https://i.imgur.com/r4IsHY4.png)
@@ -914,3 +935,328 @@ def update_post(id: int, post: Post):
 ```
 
 ---
+
+### Object Relational Mapper (ORM)
+
+We saw how to use the default Postgres driver to talk to a postgres database
+by sending SQL commands. ORM is one of the best method for working with
+databases. An ORM here is a layer of abstraction that sits between the
+database and our FastAPI application. We never talk directly to a database
+anymore. Instead we talk to an ORM and the ORM will then talk to our database.
+
+Some of the benefits are that we don't have to work with SQL anymore. So,
+what we do is instead of using raw SQL, we use standard Python code calling
+various functions and methods that ultimately translate to SQL themselves.
+
+![ORM](https://i.imgur.com/Ro3Bhyo.jpg)
+
+---
+
+### What can ORMs do
+
+-   One of the first things is instead of us going into pgAdmin and creating the
+    tables and all the columns ourselves, what we can do is we can define our tables
+    as Python models.
+
+-   Queries can be made exclusively through python code. No SQL is necessary.
+
+```py
+class Post(Base):
+    __tablename__ = 'posts'
+
+    id = Column(Integer, primary_key=True, index=True)
+    title = Column(String, index=True, nullable=False)
+    content = Column(String, nullable=False)
+    published = Column(Boolean)
+```
+
+Queries can be made using python code.
+
+```py
+db.query(models.Post).filter(models.Post.id == id).first()
+```
+
+---
+
+### SQLAlchemy
+
+-   SQLAlchemy is one of the most popular python ORMs.
+-   It is a standalone library has no association with FastAPI.
+-   It can be used with any other python web frameworks or any python based
+    application
+-   You can install SQLAlchemy through pip in your virtual environment
+
+```
+pip install sqlalchemy
+```
+
+When sqlachemy sees the `models.Base.metadata.create_all(bind=engine)` in
+`main.py`, it will go the `models.py`. From the `models.py` it will check if
+the tables exist. If the table(s) does not exist, it creates the table.
+But, if the table already exists, then it wont create a table. So, even though
+you make changes in your models file, it won't get reflected.
+SQLAlchemy is not meant for handling database migrations / handling changes to
+it. That is why we don't see it automatically making the changes.
+So, we are going to use `Alembic`.
+
+### Folder Structure
+
+The project folder will look something like this.
+
+```nim
+├── app/
+│    ├─  __init__.py
+│    ├─  database.py
+├─   ├─  main.py
+│    └── moodels.py
+├── env/
+├── .gitignore
+└── README.md
+```
+
+Lets setup sqlachemy in the existing code.
+
+#### database.py
+
+```py
+# Will handle our database connection
+# https://fastapi.tiangolo.com/tutorial/sql-databases/
+from sqlalchemy import create_engine
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
+
+# Connection string. Specifies where is our SQL database located
+# Format of a SQL string
+# SQLALCHEMY_DATABASE_URL = "postgresql://<username>:password@<ip-address/hostname>/database"
+SQLALCHEMY_DATABASE_URL = "postgresql://postgres:SomePassword@localhost/fastapi"
+
+# Engine is responsible for etablishing a connection for
+# SQLAlchemy to connect to postgres database.
+engine = create_engine(SQLALCHEMY_DATABASE_URL)
+
+# When you talk to a SQL database we need to make use of session
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+# Models that represent table extend the Base class.
+Base = declarative_base()
+
+# Dependency
+def get_db():
+    # Gets a connection the db
+    db = SessionLocal()
+
+    try:
+        yield db
+    finally:
+        db.close()
+
+# Dependency
+def get_db():
+    # Gets a connection the db
+    db = SessionLocal()
+
+    try:
+        yield db
+    finally:
+        db.close()
+```
+
+#### models.py
+
+```py
+# Every model represents a table in our database.
+
+from .database import Base
+from sqlalchemy import Column, Integer, String, Boolean
+from sqlalchemy.sql.expression import text
+from sqlalchemy.sql.sqltypes import TIMESTAMP
+
+
+class Post(Base):
+    __tablename__ = "posts"
+
+    id = Column(Integer, primary_key=True, index=True)
+    title = Column(String, index=True, nullable=False)
+    content = Column(String, nullable=False)
+    published = Column(Boolean, server_default='TRUE', nullable=False)
+    created_at = Column(TIMESTAMP(
+        timezone=True),
+        nullable=False,
+        server_default=text('now()')
+    )
+```
+
+#### main.py
+
+```py
+# https://fastapi.tiangolo.com/tutorial/first-steps/
+# How to run the code: uvicorn app.main:app --reload
+
+from . import models
+from .database import engine, get_db
+
+from random import randrange
+import time
+
+from fastapi import FastAPI, status, HTTPException, Response, Depends
+from pydantic import BaseModel
+from typing import Optional
+import psycopg2 as pg
+from psycopg2.extras import RealDictCursor
+from sqlalchemy.orm import Session
+
+models.Base.metadata.create_all(bind=engine)
+
+app = FastAPI()
+
+
+class Post(BaseModel):
+    """
+    A pydantic model that does the part of data
+    validation.
+
+    It is because of this we can ensure that whatever
+    data is sent by the frontend is in compliance
+    with the backend.
+    """
+    title: str
+    content: str
+    published: bool = True
+
+
+# Looping till we get a connection and breaking out of it
+# once the connection is established.
+while True:
+    try:
+        conn = pg.connect(
+            host='localhost',
+            database='py_api',
+            user='postgres',
+            password='',
+            cursor_factory=RealDictCursor
+        )
+        cursor = conn.cursor()
+        print("Database connection was successfull!")
+        break
+    except Exception as error:
+        print('Connection to the database failed!')
+        print('Error: ', error)
+        time.sleep(2)
+
+
+my_posts = [
+    {
+        "title": "title of post 1",
+        "content": "content of post 1",
+        "id": 1
+    },
+    {
+        "title": "favorite foods",
+        "content": "I like pizza",
+        "id": 2
+    }
+]
+
+
+def find_post(id):
+    for post in my_posts:
+        if post['id'] == id:
+            return post
+
+
+def find_index_post(id):
+    for index, post in enumerate(my_posts):
+        if post['id'] == id:
+            return index
+
+
+@app.get("/")
+async def root():
+    return {"message": "Hello World"}
+
+
+@app.get('/sqlachemy')
+def test_post(db: Session = Depends(get_db)):
+    return {"status": "success"}
+
+
+@app.get('/posts')
+def get_posts():
+    cursor.execute("""SELECT * FROM posts""")
+    posts = cursor.fetchall()
+    return {
+        "data": posts
+    }
+
+
+@app.post('/post/create', status_code=status.HTTP_201_CREATED)
+def create_post(post: Post):
+    """
+    Inserting a new post into the database
+    """
+    cursor.execute(
+        """INSERT into posts (title, content, published) VALUES (%s, %s, %s) RETURNING * """,
+        (post.title, post.content, post.published)
+    )
+    new_post = cursor.fetchone()
+    conn.commit()
+    return {"data": new_post}
+
+
+@app.get('/post/{id}')
+def get_post(id: int):
+    """
+    {id} is a path parameter
+    """
+    cursor.execute(""" SELECT * FROM posts WHERE id = %s """, (str(id), ))
+    # We are
+    # - taking an string from the parameter
+    # - converting it to int
+    # - then again converting it to str
+    # We are doing this because we want to valid that the user is giving
+    # only integers in the argument and not string like `adfadf`.
+    # Plus we are adding a comma after the str(id) because we run into an
+    # error later. Don't know the reason for the error yet.
+    post = cursor.fetchone()
+
+    if not post:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                            detail=f"Post with id: {id} not found!")
+    return {"post_detail": post}
+
+
+@app.delete('/post/delete/{id}', status_code=status.HTTP_204_NO_CONTENT)
+def delete_post(id: int):
+    cursor.execute(
+        """ DELETE FROM posts WHERE id = %s RETURNING * """,
+        (str(id), )
+    )
+    deleted_post = cursor.fetchone()
+    conn.commit()
+
+    if deleted_post is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                            detail=f"Post with id: {id} does not exist!")
+
+    return Response(status_code=status.HTTP_204_NO_CONTENT)
+
+
+# make sure to add some body in the postman to check it.
+@app.put('/post/update/{id}')
+def update_post(id: int, post: Post):
+
+    cursor.execute(
+        """UPDATE posts SET title = %s, content = %s, published = %s WHERE id = %s RETURNING * """,
+        (post.title, post.content, post.published, str(id))
+    )
+    updated_post = cursor.fetchone()
+    conn.commit()
+
+    if updated_post is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                            detail=f"Post with id: {id} does not exist!")
+
+    return {
+        'data': updated_post
+    }
+```

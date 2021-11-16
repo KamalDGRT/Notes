@@ -1507,3 +1507,23 @@ The project folder will look something like this.
 -   The `Post` pydantic class present in `main.py` is moved to `schemas.py`
     and the appropriate import statements are added and changed in `main.py`
     and `schemas.py`
+
+---
+
+---
+
+JWT Token Authentication
+
+In this section we are gonna start tackling one of the most important topics when it comes to building out an API or any application and that is authentication. Now, when you are working on authentication on an API or any application, there is really 2 main ways to tackle authentication.
+
+- Session Based Authentication (SBA)
+- JWT
+
+The idea behind SBA is that we store something on our backend server or API in this case to track whether a user is logged in. So, there is some piece of information, whether we store it in the database, whether we store in the memory that is going to keep track of if the user has logged in and when the user logs out.
+
+That is one way of doing things.
+The other way of doing things is using JWT token based authentication.
+The idea behind JWT token based authentication is that it is stateless.
+What it means by that is there is nothing on the backend, nothing on the API, nothing on our database that actually keeps track or stores some sort of information about whether a user is logged in our logged out.
+
+You'll probally be thinking how do we know that they are logged in? Well, that's the power of JWT tokens. The token itself, which we don't store in our database or store in our API is stored on the Frontend on our client's, actually keeps track of whether a user is logged in or not.

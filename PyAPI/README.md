@@ -1512,12 +1512,12 @@ The project folder will look something like this.
 
 ---
 
-JWT Token Authentication
+### JWT Token Authentication
 
 In this section we are gonna start tackling one of the most important topics when it comes to building out an API or any application and that is authentication. Now, when you are working on authentication on an API or any application, there is really 2 main ways to tackle authentication.
 
-- Session Based Authentication (SBA)
-- JWT
+-   Session Based Authentication (SBA)
+-   JWT
 
 The idea behind SBA is that we store something on our backend server or API in this case to track whether a user is logged in. So, there is some piece of information, whether we store it in the database, whether we store in the memory that is going to keep track of if the user has logged in and when the user logs out.
 
@@ -1527,3 +1527,61 @@ The idea behind JWT token based authentication is that it is stateless.
 What it means by that is there is nothing on the backend, nothing on the API, nothing on our database that actually keeps track or stores some sort of information about whether a user is logged in our logged out.
 
 You'll probally be thinking how do we know that they are logged in? Well, that's the power of JWT tokens. The token itself, which we don't store in our database or store in our API is stored on the Frontend on our client's, actually keeps track of whether a user is logged in or not.
+
+#### Flow involved in JWT
+
+So, lets take a look at the flow for how a user logs in, how a user is authenticated and then how a accesses a specific path operation resource or endpoint by using the JWT token to ensure that the API knows that we are logged in, so that we can provide the user some information.
+
+![Flow JWT](https://i.imgur.com/t6TwP6G.jpg)
+
+-   So, what's gonna happen is that the client or the frontend, whoever
+    it is, they are going to try and login.
+-   What we are going to do is, we are gonna utlimately create a path
+    operation called `/login` and the client is going to pass the
+    `username` and the `password`. The credentials could be anything.
+-   It need not be `username`, it could be `email` and the password
+    could also be anything.
+-   In our application, it is going to be `email` and `password` because
+    we don't have usernames in the table. We mostly just have emails.
+
+-   After we get their credentials, what we are gonna do is, first of all,
+    we are going to verify if the credentials are valid.
+-   If the credentials are correct, if the `username` and `password` match
+    with the account, we are going to create a JWT token.
+-   More on the JWT token later.
+-   A sample JWT token
+
+```
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.
+eyJpc3MiOiJ0b3B0YWwuY29tIiwiZXhwIjox.
+yRQYnWzskCZUxPwaQupWkiUzKELZ49QK_ZXw
+```
+
+-   You probably think like it looks like a bunch of gibberish and for the most
+    part it is.
+-   So, moving forward, I want you think of this as nothing but a string.
+-   The client doesn't know what it is. It doesn't cares. All it knows that
+    it is a string. Only the API cares what's actually in the token and what
+    it means.
+
+-   We will send a response back with the token.
+-   Now the client has the token and he can start acessing resources that require
+    authentication.
+-   So, any time he wants to, like for example, lets say a user has to be logged in
+    to retrieve posts, what he will do is he will send a request to the `/posts`
+    endpoint, but he also provides the token in the header of the request.
+-   The header is usually in the payload of the request.
+
+-   So, he sends that and now what the API (FastAPI) is going to do is, first of all,
+    it is going to verify the token is valid.
+-   There is a couple of different steps needed to verify if a token is valid and we
+    are going to cover it in the next slide, but just know that, the API just checks
+    "Hey, is this a valid token?" and if it is well it just sends back the data.
+-   It is just that simple.
+-   You provide your credentials, you get it tokened, and then anytime you want to
+    access anything that requires you to be logged in, you just send the token in the
+    header and that is it.
+-   Hopefully, this wasn't confusing and hopefully you guys see the simplicity in this
+    solution. The API doesn't actually track anything. There is no information stored
+    on the API, instead the client just holds on to the token and he provides it to us,
+    and if the token is valid, we just send back the required data.

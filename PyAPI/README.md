@@ -954,9 +954,9 @@ various functions and methods that ultimately translate to SQL themselves.
 
 ### What can ORMs do
 
--   One of the first things is instead of us going into pgAdmin and creating the
-    tables and all the columns ourselves, what we can do is we can define our tables
-    as Python models.
+-   One of the first things is instead of us going into pgAdmin and creating
+    the tables and all the columns ourselves, what we can do is we can define
+    our tables as Python models.
 
 -   Queries can be made exclusively through python code. No SQL is necessary.
 
@@ -1514,23 +1514,38 @@ The project folder will look something like this.
 
 ### JWT Token Authentication
 
-In this section we are gonna start tackling one of the most important topics when it comes to building out an API or any application and that is authentication. Now, when you are working on authentication on an API or any application, there is really 2 main ways to tackle authentication.
+In this section we are gonna start tackling one of the most important topics
+when it comes to building out an API or any application and that is
+authentication. Now, when you are working on authentication on an API or any
+application, there is really 2 main ways to tackle authentication.
 
 -   Session Based Authentication (SBA)
 -   JWT
 
-The idea behind SBA is that we store something on our backend server or API in this case to track whether a user is logged in. So, there is some piece of information, whether we store it in the database, whether we store in the memory that is going to keep track of if the user has logged in and when the user logs out.
+The idea behind SBA is that we store something on our backend server or API in
+this case to track whether a user is logged in. So, there is some piece of
+information, whether we store it in the database, whether we store in the
+memory that is going to keep track of if the user has logged in and when the
+user logs out.
 
 That is one way of doing things.
 The other way of doing things is using JWT token based authentication.
 The idea behind JWT token based authentication is that it is stateless.
-What it means by that is there is nothing on the backend, nothing on the API, nothing on our database that actually keeps track or stores some sort of information about whether a user is logged in our logged out.
+What it means by that is there is nothing on the backend, nothing on the API,
+nothing on our database that actually keeps track or stores some sort of
+information about whether a user is logged in our logged out.
 
-You'll probally be thinking how do we know that they are logged in? Well, that's the power of JWT tokens. The token itself, which we don't store in our database or store in our API is stored on the Frontend on our client's, actually keeps track of whether a user is logged in or not.
+You'll probally be thinking how do we know that they are logged in? Well,
+that's the power of JWT tokens. The token itself, which we don't store in our
+database or store in our API is stored on the Frontend on our client's,
+actually keeps track of whether a user is logged in or not.
 
 #### Flow involved in JWT
 
-So, lets take a look at the flow for how a user logs in, how a user is authenticated and then how a accesses a specific path operation resource or endpoint by using the JWT token to ensure that the API knows that we are logged in, so that we can provide the user some information.
+So, lets take a look at the flow for how a user logs in, how a user is
+authenticated and then how a accesses a specific path operation resource or
+endpoint by using the JWT token to ensure that the API knows that we are logged
+in, so that we can provide the user some information.
 
 ![Flow JWT](https://i.imgur.com/t6TwP6G.jpg)
 
@@ -1565,23 +1580,146 @@ yRQYnWzskCZUxPwaQupWkiUzKELZ49QK_ZXw
     it means.
 
 -   We will send a response back with the token.
--   Now the client has the token and he can start acessing resources that require
-    authentication.
--   So, any time he wants to, like for example, lets say a user has to be logged in
-    to retrieve posts, what he will do is he will send a request to the `/posts`
-    endpoint, but he also provides the token in the header of the request.
+-   Now the client has the token and he can start acessing resources that
+    require authentication.
+-   So, any time he wants to, like for example, lets say a user has to be
+    logged in to retrieve posts, what he will do is he will send a request to
+    the `/posts` endpoint, but he also provides the token in the header of the
+    request.
 -   The header is usually in the payload of the request.
 
--   So, he sends that and now what the API (FastAPI) is going to do is, first of all,
-    it is going to verify the token is valid.
--   There is a couple of different steps needed to verify if a token is valid and we
-    are going to cover it in the next slide, but just know that, the API just checks
-    "Hey, is this a valid token?" and if it is well it just sends back the data.
+-   So, he sends that and now what the API (FastAPI) is going to do is, first
+    of all, it is going to verify the token is valid.
+-   There is a couple of different steps needed to verify if a token is valid
+    and we are going to cover it in the next slide, but just know that, the API
+    just checks "Hey, is this a valid token?" and if it is well it just sends
+    back the data.
 -   It is just that simple.
--   You provide your credentials, you get it tokened, and then anytime you want to
-    access anything that requires you to be logged in, you just send the token in the
-    header and that is it.
--   Hopefully, this wasn't confusing and hopefully you guys see the simplicity in this
-    solution. The API doesn't actually track anything. There is no information stored
-    on the API, instead the client just holds on to the token and he provides it to us,
-    and if the token is valid, we just send back the required data.
+-   You provide your credentials, you get it tokened, and then anytime you
+    want to access anything that requires you to be logged in, you just send
+    the token in the header and that is it.
+-   Hopefully, this wasn't confusing and hopefully you guys see the simplicity
+    in this solution. The API doesn't actually track anything. There is no
+    information stored on the API, instead the client just holds on to the
+    token and he provides it to us, and if the token is valid, we just send
+    back the required data.
+
+#### JWT Tokens
+
+Let's break down what exactly a JWT token is and what are the components that
+make up a token with the below example.
+
+```
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.
+eyJpc3MiOiJ0b3B0YWwuY29tIiwiZXhwIjox.
+yRQYnWzskCZUxPwaQupWkiUzKELZ49QK_ZXw
+```
+
+> \*_Note_ This is just a sample token. The encrypted text may or may not match
+> the actual data.
+
+-   The JWT token looks encrypted but it is not.
+-   The token is made up of 3 individual pieces.
+
+-   ##### Header: Algorithm & Token Type
+
+```json
+{
+    "alg": "H256",
+    "typ": "JWT"
+}
+```
+
+-   The header includes metadata about the token.
+-   We are actually going to sign this token.
+-   It is kind of like hashing the token.
+-   We have to specify the algorithm that we are gonna use and in this case
+    the default is `H256` and the type is set to `JWT` which indicates that
+    it is a JWT Token.
+-   So, the metadata is goinng to be the same for all our tokens.
+
+-   ##### Payload: Data
+
+```json
+{
+    "sub": "123456",
+    "name": "John Doe",
+    "iat": "151623232"
+}
+```
+
+-   The payload of a token is ultimately upto you.
+-   You can send absolutely no payload.
+-   You can send any piece of information that you wanna send within the
+    payload.
+-   You can include anything that you want.
+-   However, you wanna be careful with what you put in the payload because it
+    is important to understand that the token itself is not encrypted.
+-   So, that means anybody in the outside world can take a look at the token
+    and they can see what's in the payload.
+-   So, you don't wanna put any confidential information like passwords,
+    secrets, or any like that.
+-   Instead you wanna stick to some very basic things like `id` of the user.
+-   So, when I log in, normally our API is going to create a token and then
+    embed my user `id` into the token.
+-   So, when I try to get all of my posts, the API will be able to take
+    a look at the token, verify it is correct, extract from the payload and automatically know the id the user that requested this.
+-   We can include other things like the user's role (`admin`, `superuser`
+    `normal user`, etc.).
+-   We can technically include any information.
+-   One thing to keep in mind is that any time we need to access anything
+    authenticated, we need to include this token.
+-   So, if we jam a lot of information in there, it is going to increase the
+    size of our packet. That is going to be a waste of some bandwidth. So, you
+    don't wanna jam too much information, just a couple of small things here
+    and there.
+
+-   ##### Verify Signature
+
+```js
+HMACSHA256(
+    base64UrlEncode(header) + "." + base64UrlEncode(payload),
+    your - 256 - bit - secret
+);
+```
+
+> Secret base64 encoded
+
+-   A signature is a combination of 3 things.
+-   We got the header that is already in the token.
+-   We take the payload that is already in the token.
+-   Then, we add our secret.
+-   So, there is a special password that we are going to keep on our API.
+-   This is only in our API.
+-   The clients will not know it.
+-   No one else would know it and it is probably the most important thing
+    to our whole authentication system.
+-   So, you don't want the secret to get out.
+-   But we take those 3 things and pass it to the signing algorithm which
+    is h256 and it is going to return a signature.
+-   This signature is important because we are going to use this to determine
+    if this token is valid 'cause we don't want anyone else tampering with our
+    token; we don't want them changing the data.
+-   I don't want some user to login and change some numbers in the token to
+    imitate a different user and access information.
+-   Signature is just there for data integrity.
+
+---
+
+### Purpose of Signature
+
+Let's deep dive into why need a signature within the token.
+
+![Purpose of Signature](https://i.imgur.com/fmwzyXC.jpg)
+
+Content for the same can be viewed [here](https://youtu.be/0sOvCWFmrtA?t=24105).
+
+---
+
+### Logging In User
+
+![Logging In User](https://i.imgur.com/3Prx7wx.jpg)
+
+Content can be found [here](https://youtu.be/0sOvCWFmrtA?t=24423);
+
+---

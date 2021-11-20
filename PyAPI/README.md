@@ -1723,3 +1723,19 @@ Content for the same can be viewed [here](https://youtu.be/0sOvCWFmrtA?t=24105).
 Content can be found [here](https://youtu.be/0sOvCWFmrtA?t=24423);
 
 ---
+
+### Stuff done in between
+
+-   Implemented logging in feature in the API
+-   Created some variable `{{JWT}}` for easier usage
+-   Installed `python-jose[cryptography]` pip package
+-   Used bcrypt to hash the passwords and use it in login
+-   Created `oauth2.py` for storing the jwt authentication
+-   Allowed only logged in users to fetch posts and do stuff
+-   Restricted the owner of the post to update and delete post
+-   Learnt how to create a foreign key using `pgAdmin`
+-   Used Python to create a foreign key in the database
+-   Implemented arguments passing in the URL (Query Parameters)
+-   Stored secrets and stuff in a `.env` file
+-   Used `BaseSettings` class from `pydantic` to fetch env variables.
+

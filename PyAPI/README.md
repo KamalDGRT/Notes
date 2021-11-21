@@ -1787,3 +1787,68 @@ Content can be found [here](https://youtu.be/0sOvCWFmrtA?t=24423);
     GROUP BY posts.id
     ```
 -   Implemented vote count logic for the posts in the API
+-   Started with learning `Alembic` - a database migration tool
+-   It allows to do incremental changes to the database and keep track of it
+
+---
+
+### Database Migrations
+
+-   Developers can track changes to code and rollback easily with GIT.
+    Why can't we do the same for database models/tables?
+-   Database migrations allow us to incrementally track changes to the
+    database schema and rollback changes to any point in time.
+-   We will use  a tool called `Alembic` to make changes to our database.
+-   Alembic can also automatically pull database models from
+    `SQLAlchemy` and generate the proper tables.
+
+-   `pip install alembic`
+-   To initialize `alembic`: 
+    
+    ```
+    alembic init <foldername>
+    ```
+
+    Example:
+    ```
+    alembic init alembic
+    ```
+-   We have to import the `Base` object present in `app/models.py` in
+    `alembic/env.py`.
+-   When we want to make changes to our database, we need to create a
+    `revision`. The revision is what tracks our changes on a step by step
+    basis.
+-   `alembic revision -m "create posts table"`
+-   The above command will create a file. Mention the table stuff that you
+    wanna do in that file.
+
+    ```py
+    def upgrade():
+        op.create_table(
+            'posts',
+            sa.Column('id', sa.Integer(), nullable=False, primary_key=True),
+            sa.Column('title', sa.String(), nullable=False)
+        )
+        pass
+
+
+    def downgrade():
+        op.drop_table('posts')
+        pass
+    ```
+-   Use `alembic upgrade <revision id>` to make those migrations.
+    Eg. `alembic upgrade d9ead45cf617`
+
+-   `alembic current` displays the current migration.
+-   `alembic heads` displays the latest revision done
+-   Since head has the latest revison id, one can make mirations like this:
+    `alembic upgrade head`
+-   `alembic downgrade <revision id>` rolls back to that revision.
+-   `alembic downgrade -1` rolls back one migration.
+-   `alembic downgrade -2` rolls back two migrations.
+-   `alembic upgrade +1` upgrades one migration.
+-   `alembic upgrade +2` upgrades two migrations.
+-   We can also use `alembic` to create tables automatically.
+-   `alembic revision --autogenerate -m "auto-gen-votes"` will look at our
+    `sqlalchemy` models and modify our database accordingly and make the
+    changes.

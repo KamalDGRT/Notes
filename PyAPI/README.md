@@ -1759,3 +1759,31 @@ Content can be found [here](https://youtu.be/0sOvCWFmrtA?t=24423);
     -   Since Primary Keys must be unique, this will ensure that no user can
         like a post twice
     -   ![Composite Keys](https://i.imgur.com/Otk42mX.png)
+
+-   #### Vote Route
+
+    -   Path will be at `/vote`
+    -   The user id will be extracted from the JWT token
+    -   The body will contain the id of the post the user is voting on as
+        well as the direction of the vote.
+
+        ```json
+        {
+            "post_id": 1432,
+            "vote_dir": 0
+        }
+        ```
+
+    -   A vote direction of 1 means we want to add a vote, a vote of
+        direction of 0 means we want to delete a vote.
+
+-   Implemented voting logic in the API
+-   Learnt how to implement joins in postgres using raw SQL
+-   ```sql
+    SELECT posts.*, COUNT(votes.post_id) AS votes
+    FROM posts
+    LEFT JOIN votes
+    ON posts.id = votes.id
+    GROUP BY posts.id
+    ```
+-   Implemented vote count logic for the posts in the API

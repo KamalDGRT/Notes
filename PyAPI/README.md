@@ -1898,7 +1898,44 @@ Content can be found [here](https://youtu.be/0sOvCWFmrtA?t=24423);
     lot of configuration.
 -   With that DB configuration, you can setup the `Config Vars`.
 -   You can also connect to that postgres instance in your `pgAdmin`.
+-   Before that, `heroku apps` lists out the apps that you have in heroku.
+-   `heroku apps:info <appname>` where `<appname>` is one of your heroku apps,
+    lists out the app information.
 -   We should never run `alembic revision` in production.
 -   `alembic revision` should be run only in development.
 -   In our production we run `alembic upgrade head`.
 -   But to run that command in our heroku instance, there is a way.
+-   `heroku run <command name>` is the way.
+-   In our case it will be `heroku run "alembic upgrade head"`.
+
+---
+
+### Cloud deploy
+
+Since cloud deploy involves payment, I just watched the video but didn't note
+down what happens. From what I have seen, it is just like setting up in a
+normal Linux distro like mine. He is setting it up in a Ubuntu Cloud VM.
+
+---
+
+### NGINX
+
+-   High performance webserver that can act as a proxy
+-   Can handle SSL termination.
+-   ![NGINX](https://i.imgur.com/UAwKB7M.png)
+
+---
+
+### Docker
+
+-   Install docker in your system.
+-   Make sure that `docker` service is running.
+-   Create a `Dockerfile` in the project root.
+-   Add the steps needed to run the app.
+-   Docker compose is better than docker run.
+-   Create `docker-compose.yml`.
+-   Use `docker-compose up -d` to run it.
+-   Use `docker-compose down` to stop its execution
+-   Create a account in docker hub
+-   `docker login` to log in into your account
+-   `docker image tag <image name> <new image name>`

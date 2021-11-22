@@ -1798,21 +1798,23 @@ Content can be found [here](https://youtu.be/0sOvCWFmrtA?t=24423);
     Why can't we do the same for database models/tables?
 -   Database migrations allow us to incrementally track changes to the
     database schema and rollback changes to any point in time.
--   We will use  a tool called `Alembic` to make changes to our database.
+-   We will use a tool called `Alembic` to make changes to our database.
 -   Alembic can also automatically pull database models from
     `SQLAlchemy` and generate the proper tables.
 
 -   `pip install alembic`
--   To initialize `alembic`: 
-    
+-   To initialize `alembic`:
+
     ```
     alembic init <foldername>
     ```
 
     Example:
+
     ```
     alembic init alembic
     ```
+
 -   We have to import the `Base` object present in `app/models.py` in
     `alembic/env.py`.
 -   When we want to make changes to our database, we need to create a
@@ -1836,6 +1838,7 @@ Content can be found [here](https://youtu.be/0sOvCWFmrtA?t=24423);
         op.drop_table('posts')
         pass
     ```
+
 -   Use `alembic upgrade <revision id>` to make those migrations.
     Eg. `alembic upgrade d9ead45cf617`
 
@@ -1852,3 +1855,50 @@ Content can be found [here](https://youtu.be/0sOvCWFmrtA?t=24423);
 -   `alembic revision --autogenerate -m "auto-gen-votes"` will look at our
     `sqlalchemy` models and modify our database accordingly and make the
     changes.
+
+---
+
+### CORS
+
+-   Cross Origin Resource Sharing (CORS) allows you to make requests
+    from a web browser on one domain to a server on a different domain.
+-   By default our API will only allow web browsers running onn the same
+    domain as our server to make requests to it.
+-   More stuff on the same can be found
+    [here](https://fastapi.tiangolo.com/tutorial/cors/).
+-   Middleware is kind of a function that runs before any request.
+
+### Heroku Deploy
+
+-   Create a Heroku account.
+-   Verify the account, Login in the browser.
+-   Install Heroku CLI in your system.
+-   `heroku login`
+-   The above command will open a browser, if not copy paste the link
+    and allow you to log in.
+-   After logging in, go inside your project folder in the CLI.
+-   Then type `heroku create <appname>`. Replace `<appname>` with an unique
+    app name.
+-   Make sure to commit your changes to GitHub first before pushing your changes.
+-   Make sure to have a `Procfile` that mentions the task that needs to be done
+    on deploy. In our case, it will be
+    `web: uvicorn app.main:app --host=0.0.0.0 --port=${PORT:-5000}`
+-   The `Procfile` should also be commited to github.
+-   Once that is done to deploy your app, just give
+    `git push heroku main`
+-   Even though deployed you might face some error for this API app.
+-   That is because, we do not have a postgres database instance yet.
+-   So, lets create that by running:
+
+    ```
+    heroku addons:create heroku-postgresql:hobby-dev
+    ```
+
+-   If you go the dashboard of the app in the browser, you can get a whole
+    lot of configuration.
+-   With that DB configuration, you can setup the `Config Vars`.
+-   You can also connect to that postgres instance in your `pgAdmin`.
+-   We should never run `alembic revision` in production.
+-   `alembic revision` should be run only in development.
+-   In our production we run `alembic upgrade head`.
+-   But to run that command in our heroku instance, there is a way.

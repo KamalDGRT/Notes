@@ -1939,3 +1939,137 @@ normal Linux distro like mine. He is setting it up in a Ubuntu Cloud VM.
 -   Create a account in docker hub
 -   `docker login` to log in into your account
 -   `docker image tag <image name> <new image name>`
+
+---
+
+### Testing
+
+-   Installed `pytest`: `pip install pytest`
+-   The name of the functions and the testing files matters if you want
+    the `pytest` to auto-discover it.
+-   More info on the same can be found
+    [here](https://docs.pytest.org/en/6.2.x/goodpractices.html).
+-   `pytest -v -s` is one better way to run the tests.
+-   `-v` increases verbosity whereas `-s` prints any print statement present
+    inside the test functions.
+
+---
+
+### CI/CD
+
+-   Currently when it comes to adding a new feature and making changes
+    to our code, we have to go through a very manual and cumbersome
+    process before we can get those changes pushed out to our
+    production environment.
+-   So, what I think would be good is to setup a CI/CD pipeline so that
+    we can do all of this in an automated fashion.
+-   Continuous Integration - automated process to build, package and test
+    applications.
+-   Continous Delivery - Picks up where continuos integration ends and
+    automated the delivery of applications.
+
+---
+
+### Current Manual Process
+
+-   Lets take a look at what our whole manual process looks like right now
+    so that we can see where a lot of the extraneous time consumption and
+    manual process takes place.
+
+-   ![Manual Process](https://i.imgur.com/KOwQvAH.png)
+
+-   So, our current manual process is that we are gonna make some changes to
+    our code and then we are going to commit those changes to git.
+-   After that we are gonna go ahead and run `pytest` so that we can verify
+    that our changes didn't break any known functionality to our code.
+-   If our tests pass, we have an optional step of building an image.
+    (Building docker image in dev and prod env)
+-   In other languages, we may need to build an application file, but in
+    python we don't need that. That is why it is an optinal step here if
+    you are not using docker.
+-   After we do that, we then move on to deploying our application.
+-   The deploy stuff could represent multiple steps because depending on how
+    you deploy your application, making any changes or updating the code in
+    your production environment could actually invole a very complex process.
+-   So, with `heroku`, its obviously a simple process 'cause all we do is
+    a `git push` to `heroku` and that is going to automatically cause the
+    `heroku` to handle all of the updating of the processes. Thats a feature
+    built into heroku but we only get that if we use `heroku`.
+-   There is obviously a number of different ways that we can deploy our
+    application.
+-   If we decide to go the route of deploying our application on an ubuntu
+    server, then the deployment process in this case would be us logging in
+    to our server, us pulling in the new code with the changes and restarting
+    the service so that our application can actually use the new code.
+-   But if you are using some other production environment or you use some
+    other method to deploy your application, this could be an even more complex
+    process; something to keep in mind.
+-   So, even though it is just one block in the above image, it could actually
+    be a numerous steps.
+
+---
+
+### Automated CI/CD
+
+-   Now lets see how our automated CI/CD pipeline is going to look like after
+    we set it up.
+-   Just like we did in our manual process, we are gonna make changes to our
+    code (obviously that is a manual step because we have to implement the 
+    changes to our code) and then we are going to commit those changes.
+-   With a CI/CD pipeline or specifically with the one that we are building,
+    that is all the manual steps that we have to do. We are done. We don't
+    have to touch our keyboard or our mouse. It is basically hands-off at
+    this point and we are gonna let automation take over.
+-   Usually when you commit changes to your code, that is going to trigger
+    our CI/CD pipeline to run.
+-   So, what happens is our CI phase starts at this point as soon as we
+    commit our changes.
+
+![automatic-CI-CD](https://i.imgur.com/KO8zBGp.png)
+
+-   In the CI phase, the first thing that we do is we pull our source code.
+-   We pull our source code so that we can actually work with it.
+-   We then install any dependencies. So, this is the equivalent of installing
+    all of the dependencies listed in our `requirements.txt` file.
+-   We then run our automated tests. So, that is running `pytest`.
+-   Assuming the test passes, we then build any images. This is once again an
+-   That wraps up our `Continous Integration` phase.
+-   Now that is done, the `Continuous Delivery` phase is going to take over.
+-   So, what the CD is going to do is it is either going to grab the latest
+    code or the new build image depending on what our deployment model
+    actually is.
+-   With the new image or code it is going to then have all of the logic
+    needed to push that new image or the new code into our production and
+    make sure that the production is using the brand new code.
+-   That is what all `CI/CD` is all about.
+-   It is going to be done using the code essentially.
+
+---
+
+### CI/CD Tools
+
+-   Some of the common CI/CD tools include Jenkins, Travis CI, Circle CI and
+    github actions.
+
+![CICDTools](https://i.imgur.com/eqqFE0H.png)
+
+-   For our app, we are going to use GitHub Actions just because
+    -   it is already integrated into GitHub,
+    -   we don't need to install anything on our local machine
+    -   there is no software that we have to setup
+    -   it is all hosted on GitHub. So, it is like a hosted service
+    -   is just gonna make things very clean, very simple
+    -   it is free so everyone is gonna have access to it.
+
+---
+
+### What does a CI/CD tool do?
+
+-   All CI/CD Tools are dead simple.
+-   They provide a runner - Nothing more than a computer (VM) to run a bunch
+    of commands we specify.
+-   These commands are either usually configured in a YAML/JSON file or
+    through GUI.
+-   The different steps/commands we provide makeup all of the actions our
+    pipeline will perform.
+-   The pipeline will be triggered based off of some event. (`git push/merge`)

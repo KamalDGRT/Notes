@@ -948,7 +948,7 @@ Some of the benefits are that we don't have to work with SQL anymore. So,
 what we do is instead of using raw SQL, we use standard Python code calling
 various functions and methods that ultimately translate to SQL themselves.
 
-![ORM](https://i.imgur.com/Ro3Bhyo.jpg)
+![ORM](https://i.imgur.com/Ca8QBth.jpg)
 
 ---
 

@@ -136,3 +136,61 @@ we can expect from a NoSQL database are that it is:
 | Scales out horizontally                   | Scales up vertically             |
 
 ---
+
+### Setting Up
+
+-   As mentioned there are 4 main types of NoSQL database systems each using a
+    different data model.
+-   Once again, they are:
+
+    -   Key-Value
+    -   Document
+    -   Tabular
+    -   Graph
+
+-   Databases have multiple layers.
+-   The first layer is an **interface** or in other words a visual platform
+    where you can visit and interact with data which is where you find the
+    format, the language and the transport.
+-   In this course the interface that we are going to use is called
+    DataStax Astra data management system.
+-   DataStax Astra DB is an auto-scaling Database-As-A-Service built on
+    Apache Cassandra designed to simplify cloud-native application
+    development.
+-   Because it is built on Apache Cassandra, one would be using the
+    Cassandra Query Language or CQL.
+-   CQL offers a model close to SQL in the sense that data is put in tables
+    containing rows and columns.
+-   It is through these languages that we interact with our database.
+-   The next layer is the **execution** layer.
+-   This is where we pass the incoming queries coming from our interface.
+-   It is also used as an analyser and dispatcher.
+-   Finally we have the **storage** layer in which the indexing of data
+    happens.
+
+The reason for using DataStax Astra is that it allows all 4 database models so
+that we need to sign up for different stuff for different purposes.
+
+We can group these Database Management Systems into families according to the
+C.A.P Theorem. According to the C.A.P theorem, a NoSQL database cannot achieve
+consistency, availability and partition tolerance. It must sacrifice one of the
+three. For example, MongoDB and Kafka, chose to focus on CP and the DBMS that
+we are going to use (DataStaxAstra) is built on Apache Cassandra which chose
+to focus on A.P.
+
+So to recap, what we are doing here is using DataStax Astra, which is an
+interface essentially, that will will allows us to work with NoSQL database,
+which is in this case, Apache Cassandra. To be exact, Apache Cassandra is an
+open sourced NoSQL distributed database. The language that we would use to
+communicate is Cassandra Query Language or CQL for short, which as mentioned
+is very similar to SQL. Most NoSQL databases have their own Query Language
+but not all.
+
+---
+
+In the DataStax Astra, create a database.
+
+-   Name it as `fcc_tutorial`
+-   Keyspace: `tabular`
+-   Cloud provider: anything that you want, I am choosing AWS
+-   Region: choose your closest region

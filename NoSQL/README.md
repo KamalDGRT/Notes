@@ -60,3 +60,79 @@ In that course, the instructor is teaching the following stuff:
     from. We have to look at them as well as SQL.
 
 ---
+
+### Structured Query Language (SQL)
+
+-   SQL stands for Structured Query Language.
+-   It is used for relational databases.
+-   By relational, it means a collection of tables with rows and columns that
+    stores a specific set of structured data.
+-   NoSQL is used for non-relational and relational databases.
+-   NoSQL means not only SQL. You can use SQL in it if you want to.
+
+| NoSQL                          | SQL                                |
+| ------------------------------ | ---------------------------------- |
+| A database management approach | Not a database management approach |
+| Not a Query Language           | A Query Language                   |
+
+---
+
+### Why use NoSQL?
+
+There are 2 reasons for it.
+
+-   Application Development Productivity
+-   Large Scale Data
+
+#### Application Development Productivity
+
+-   When developing an app, there is a significant amount of time spent on
+    organizing data.
+-   By organizing, I mean mapping data between in-memory data structures
+    and a relational database.
+-   So, in another words, a type of database that supports SQL.
+-   As a Non Relational Database Mangement approach, NoSQL can provide a data
+    model that benefits the application's need and in turn makes our lives
+    easier in the long run.
+-   As the data model is most suited for the application, it makes the
+    debugging and writing code easier and as well as allows easy evaluation.
+
+#### Large Scale Data
+
+-   As we know organizations today love to capture as much data as possible
+    to improve their offerings as well as other things.
+-   However, capturing large amount of data and processing it quickly is
+    expensive in terms of operation.
+-   So, whilst it is easy to do so with relational databases, it is usually
+    more economic to run large data and processes on lots and lots of little
+    cheaper machines or clusters that NoSQL databases are explicitly designed
+    to run on rather than one large one large one as it is typical for
+    relational databses.
+
+In conclusion, NoSQL is a database management approach. The characteristics
+we can expect from a NoSQL database are that it is:
+
+-   Non-Relational
+-   Distributed
+-   Scalable
+
+---
+
+### NoSQL vs SQL
+
+-   Now, when people look at NoSQL and SQL, they might be tempted to compare
+    the two.
+-   But by now, we know we can't do this.
+-   Why again? This is because once again, NoSQL is a database management
+    approach and SQL is a language. So, 2 completely different things.
+-   It might be better going forward to start referring to NoSQL databases
+    as Non-Relational databases.
+
+| Non-relational or NoSQL                   | Relational                       |
+| ----------------------------------------- | -------------------------------- |
+| Uses SQL or doesn't use SQL               | Uses SQL                         |
+| Not only tables with fixed columns & rows | Tables with fixed columns & rows |
+| Flexible Schema                           | Fixed Schema                     |
+| Scales out horizontally                   | Scales up vertically             |
+
+---

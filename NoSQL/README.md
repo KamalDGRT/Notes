@@ -194,3 +194,56 @@ In the DataStax Astra, create a database.
 -   Keyspace: `tabular`
 -   Cloud provider: anything that you want, I am choosing AWS
 -   Region: choose your closest region
+-   When you create the DB, initially it will be `pending`.
+-   Wait for it to turn `active`.
+
+Now that we have set up our Database Management System let's start getting to
+some examples.
+
+---
+
+### Tabular Type
+
+-   It also known as Column Database Type or a Wide Column Database Type.
+-   Tables are relational and come with a schema.
+-   We will be creating a table called `books` and will be defining what kind
+    of rows the table can take.
+
+| Field Name | Type        |
+| ---------- | ----------- |
+| Book ID    | UUID        |
+| Author     | Text        |
+| Title      | Text        |
+| Year       | Int         |
+| Categories | Set of Text |
+| Timestamp  | Timestamp   |
+
+UUID = Universally Unique Identifier
+
+In the DataAstrax dashboard:
+
+-   Click on the database
+-   Click on `CQL Console`
+-   Type `describe keyspaces;`.
+-   Keyspace means logical grouping of tables (in RDBMS, it would be `database`)
+-   To use the newly created `tabular` keyspace, type `use tabular;`
+-   Lets create a table in the `tabular` keyspace.
+
+```sql
+CREATE TABLE IF NOT EXISTS book (
+    bookid uuid,
+    author TEXT,
+    title TEXT,
+    year INT,
+    categories SET <text>,
+    added TIMESTAMP,
+    PRIMARY KEY (bookid)
+);
+```
+
+uuid is a 128-bit label used for information in computer systems.
+
+Primary key is something that allows us to identify records uniquely.
+The `bookid` will also be our partition key.
+
+- `DESCRIBE keyspace tabular;` will describe our newly created table.

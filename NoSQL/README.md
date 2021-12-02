@@ -246,4 +246,222 @@ uuid is a 128-bit label used for information in computer systems.
 Primary key is something that allows us to identify records uniquely.
 The `bookid` will also be our partition key.
 
-- `DESCRIBE keyspace tabular;` will describe our newly created table.
+-   `DESCRIBE keyspace tabular;` will describe our newly created table.
+-   To add a record,
+
+```sql
+INSERT INTO book
+(bookid, author, title, year, categories, added)
+VALUES
+(uuid(), 'Bobby Brown', 'Dealing with Tables', 1999, {'programming', 'computers'}, toTimeStamp(now()));
+```
+
+-   To check if they have been inserted, you can check with this:
+
+```sql
+SELECT * FROM book;
+```
+
+-   Inserting another record.
+
+```sql
+INSERT INTO book
+(bookid, author, title, year, categories, added)
+VALUES
+(uuid(), 'Andrea Agnes', 'The Moon', 2001, {'space', 'non-fiction'}, toTimeStamp(now()));
+```
+
+-   Fetching a specific record
+
+```sql
+SELECT * FROM book
+WHERE bookid = 2f0e7571-aa06-4716-bbc0-2f42880a007e;
+```
+
+-   Creating another table.
+
+```sql
+CREATE TABLE IF NOT EXISTS restaurant_by_country (
+    country TEXT,
+    name TEXT,
+    cuisine TEXT,
+    url TEXT,
+    PRIMARY KEY ((country), name, url)
+) WITH CLUSTERING ORDER BY (name DESC, url ASC);
+```
+
+Whatever we pass in PRIMARY KEY will be our partition key.
+
+So,
+
+-   `country` - partition key
+-   `name`, `url` - clustering keys
+
+Inserting records into this new table.
+
+```sql
+INSERT INTO restaurant_by_country
+(country, name, cuisine, url)
+VALUES
+('POLAND', 'Wiejska Karczma', 'traditional', 'www.karczma.pl');
+```
+
+```sql
+INSERT INTO restaurant_by_country
+(country, name, cuisine, url)
+VALUES
+('SINGAPORE', 'The Shack', 'american', 'www.shack.sg');
+```
+
+```sql
+INSERT INTO restaurant_by_country
+(country, name, cuisine, url)
+VALUES
+('UNITED KINGDOM', 'The Red Rose', 'pub', 'www.redrose.co.uk');
+```
+
+Fetching all the newly inserted records.
+
+```sql
+SELECT * FROM restaurant_by_country;
+```
+
+Fetching a specific record:
+
+```sql
+SELECT * from restaurant_by_country
+WHERE country='SINGAPORE';
+```
+
+```sql
+INSERT INTO restaurant_by_country
+(country, name, cuisine, url)
+VALUES
+('SINGAPORE', 'The Hut', 'lebanese', 'www.hut.sg');
+```
+
+```sql
+SELECT * from restaurant_by_country
+WHERE country='SINGAPORE';
+```
+
+---
+
+### Document Type Model
+
+-   Document or document oriented database types are arguably one of the
+    easiest types to deal with.
+-   This is because they require no schema.
+-   In tabular data model, we had to define schema, but here we don't.
+-   As long as our data comes as an object, it is fine.
+-   The objects are made up of keys and values.
+-   Example of an object in a `to-do-list application`:
+
+```json
+{
+    "id": 0,
+    "title": "Fix Bike",
+    "description": "Fix bike before housemate finds out",
+    "done": true
+}
+```
+
+-   The values part in these objects can be numbers, strings, boolean or
+    another object.
+-   This is called JSON (JavaScript Object Notation) and is the popular
+    format for document database types.
+-   A group of documents is called a **collection**.
+-   So, we will not be using the word _tables_ anymore.
+-   It has been replaced by collections.
+-   So, keep that in mind moving forward.
+
+---
+
+-   Lets make a collection of to-do items using a Document API.
+-   An API stands for **Application Programming Interface**.
+-   They allow for technologies to essentially talk with each other and are
+    essential to so many services we rely on today.
+-   Examples of API
+    -   twitter API - to fetch tweets
+    -   Map API - for delivery services
+
+---
+
+#### HTTP Request Methods
+
+The most common are:
+
+-   GET Request
+-   POST Request
+-   PUT Request
+-   DELETE Request
+
+---
+
+#### Creating a new keyspace: document
+
+-   Create a new keyspace in the DataStax Astra dashboard.
+-   To work with document types, we have to connect with a document API.
+-   Before we do that, we have to get a token in order to communicate
+    with our database.
+-   To do this, go to `Settings` -> `Application Settings` ->
+    `Organization Settings` -> Choose `Adminsrator` user ->
+    `Generate Token`.
+-   Copy Token.
+-   Click on the database -> `Connect` -> `Swagger UI`
+-   Create a new empty collection by choosing this
+
+```js
+POST
+​/v2​/namespaces​/{namespace-id}​/collections
+Create a new empty collection in a namespace
+```
+
+-   Click on `Try it Out`.
+-   Under `X-Cassandra Token` paste the token value that you copied in above
+    step.
+-   Under `namespace-id` fill `document` in it because that is the one that
+    we created.
+-   In the body, add the JSON data for the new collection name.
+
+```json
+{
+"name": "first_collection"
+}
+```
+
+-   Scroll down and click `Execute`.
+-   If it went successfully, you would be getting a response status of 201.
+
+------
+
+##### Adding stuff into the collection
+
+-   Lets add new stuff into the newly created collection.
+-   Go to the following endpoint.
+
+```js
+POST
+​/v2​/namespaces​/{namespace-id}​/collections​/{collection-id}
+Create a new document
+```
+
+-   Click on `Try it Out`.
+-   Fill in the token.
+-   `namespace-id` -> `document`
+-   `collection-id` -> `first_collection`
+-   In the body I am gonna add this
+
+```json
+{
+    "id": 1,
+    "title": "Make Dinner",
+    "description": "Make dinner for friends coming over.",
+    "done": false
+}
+```
+
+-   If it all went fine, you will get a `201` response with 
+    a JSON object containing the `documentId`.
+
+------

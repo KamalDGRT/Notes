@@ -426,14 +426,14 @@ Create a new empty collection in a namespace
 
 ```json
 {
-"name": "first_collection"
+    "name": "first_collection"
 }
 ```
 
 -   Scroll down and click `Execute`.
 -   If it went successfully, you would be getting a response status of 201.
 
-------
+---
 
 ##### Adding stuff into the collection
 
@@ -461,7 +461,127 @@ Create a new document
 }
 ```
 
--   If it all went fine, you will get a `201` response with 
+-   Click on `Execute`.
+-   If it all went fine, you will get a `201` response with
     a JSON object containing the `documentId`.
 
-------
+---
+
+##### Getting all the documents present in a collection
+
+-   Lets fetch all the objects present in a collection.
+-   Go to the following endpoint.
+
+```js
+GET
+​/v2​/namespaces​/{namespace-id}​/collections​/{collection-id}
+Search documents in a collection
+```
+
+-   Click on `Try it Out`.
+-   Fill in the token.
+-   `namespace-id` -> `document`
+-   `collection-id` -> `first_collection`
+-   Click on `Execute`.
+-   If it all went fine, you will be getting a response code of `200` along
+    with a response body that has all the items.
+
+---
+
+##### Get a specific document
+
+-   Lets fetch a specific document from a collection.
+-   Go to the following endpoint.
+
+```js
+GET
+​/v2​/namespaces​/{namespace-id}​/collections​/{collection-id}​/{document-id}
+Get a document
+```
+
+-   Click on `Try it Out`.
+-   Fill in the token.
+-   `namespace-id` -> `document`
+-   `collection-id` -> `first_collection`
+-   `document-id` -> `<id of the newly created document>`
+-   Click on `Execute`.
+-   If it all went fine, you will be getting a response code of `200` along
+    with a response body that has one item from from our collection based by
+    its `documentId`
+
+---
+
+##### Adding another document into the collection
+
+-   Lets add another document into the collection.
+-   Go to the following endpoint.
+
+```js
+POST
+​/v2​/namespaces​/{namespace-id}​/collections​/{collection-id}
+Create a new document
+```
+
+-   Click on `Try it Out`.
+-   Fill in the token.
+-   `namespace-id` -> `document`
+-   `collection-id` -> `first_collection`
+-   In the body I am gonna add this
+
+```json
+{
+    "id": 2,
+    "title": "Make Dinner",
+    "description": "Clean Dishes after dinner",
+    "done": false
+}
+```
+
+-   Click on `Execute`.
+-   If it all went fine, you will get a `201` response with
+    a JSON object containing the `documentId`.
+-   Let's add another document.
+
+```json
+{
+    "id": 10,
+    "title": "Fix Shoes",
+    "description": "Take Shoes to fix.",
+    "done": false
+}
+```
+
+Now lets try to fetch the records that have the title `Make Dinner`.
+
+-   Go to the following endpoint.
+
+```js
+GET
+​/v2​/namespaces​/{namespace-id}​/collections​/{collection-id}
+Search documents in a collection
+```
+
+-   Click on `Try it Out`.
+-   Fill in the token.
+-   `namespace-id` -> `document`
+-   `collection-id` -> `first_collection`
+-   `where` -> `{"title": {"$eq": "Make Dinner"}}`
+-   Click on `Execute`.
+-   If it all went fine, you will be getting a response code of `200` along
+    with a response body that has all the items.
+
+---
+
+##### Updating a document
+
+You can use this end point to update a document that is present in a collection.
+
+```js
+PUT
+​/v2​/namespaces​/{namespace-id}​/collections​/{collection-id}​/{document-id}
+Create or update a document with the provided document-id
+```
+
+Feel free to play around the various endpoints present in the Swagger UI.
+
+---

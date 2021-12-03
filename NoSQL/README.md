@@ -511,7 +511,7 @@ Get a document
 
 ---
 
-##### Adding another document into the collection
+##### Fetching multiple records based on a condition
 
 -   Lets add another document into the collection.
 -   Go to the following endpoint.
@@ -585,3 +585,174 @@ Create or update a document with the provided document-id
 Feel free to play around the various endpoints present in the Swagger UI.
 
 ---
+
+### Key Value Database Model
+
+-   They are considered to be the easiest database type and usually come
+    looking like this:
+
+    ```js
+    KEY     VALUE
+    A1      AAA,BBB,CCC
+    A2      111,222,333
+    A3      CCC,111,XXX
+    ```
+
+-   There will be a key column and a value column.
+-   You can actually have as many value columns as you wish.
+-   The important thing here is that we can retrieve data back to us, i.e.
+    an entire row by the key as that is the identifier in this case.
+-   Example of a Key Value Database
+
+```
+
+```
+
+---
+
+#### Creating a new keyspace: keyvalue
+
+-   In the DataStax Astra Dashbord, go to the databases tab and create a new
+    keyspace with the name `keyvalue`.
+-   This time let us use GraphQL as we have already used Document API before.
+-   Click on `Connect`.
+-   Open the GraphQL playground URL.
+-   Add your Cassandra Token in the `HTTP Headers`.
+-   By default the graphql query is:
+
+```gql
+{
+    keyspaces {
+        name
+    }
+}
+```
+
+-   To create a table using GraphQL run this command
+
+```gql
+mutation {
+    createTable(
+        keyspaceName: "keyvalue"
+        tableName: "shop_inventory"
+        partitionKeys: [{ name: "key", type: { basic: TEXT } }]
+        values: [{ name: "value", type: { basic: TEXT } }]
+    )
+}
+```
+
+If it all went fine, you will be getting this message in the output
+
+```json
+{
+    "data": {
+        "createTable": true
+    }
+}
+```
+
+Now that the table is created, lets add keys and values.
+
+-   In the URL part, change `/api/graphql-schema` to `/api/graphql/keyvalue`.
+-   We are adding `keyvalue` as that is the keyspace that we created earlier.
+
+```gql
+mutation {
+    insertshop_inventory(value: { key: "3dr53", value: "beans" }) {
+        value {
+            key
+            value
+        }
+    }
+}
+```
+
+The line
+
+```gql
+insertshop_inventory(value: { key: "3dr53", value: "beans" })
+```
+
+is the insertion part.
+
+-   The statement below it
+
+```gql
+value {
+    key
+    value
+}
+```
+
+is added to return the newly added record in the table.
+
+-   If it all went fine, you will be getting this:
+
+```json
+{
+    "data": {
+        "insertshop_inventory": {
+            "value": {
+                "key": "3dr53",
+                "value": "beans"
+            }
+        }
+    }
+}
+```
+
+-   Lets add another item.
+
+```gql
+mutation {
+    insertshop_inventory(value: { key: "42dhw", value: "shampoo" }) {
+        value {
+            key
+            value
+        }
+    }
+}
+```
+
+-   Before actually fetch the data using GraphQL, lets check if we can fetch
+    the data in the `CQL Console`.
+
+-   `USE keyvalue;`
+-   `DESCRIBE TABLE "shop_inventory";`
+-   `SELECT * FROM "shop_inventory";`
+
+-   If you run the above queries in order, you can see the newly inserted
+    records.
+-   Lets now see how we can fetch them using GraphQL.
+
+```gql
+query {
+    shop_inventory {
+        values {
+            key
+            value
+        }
+    }
+}
+```
+
+-   This would return this:
+
+```json
+{
+    "data": {
+        "shop_inventory": {
+            "values": [
+                {
+                    "key": "42dhw",
+                    "value": "shampoo"
+                },
+                {
+                    "key": "3dr53",
+                    "value": "beans"
+                }
+            ]
+        }
+    }
+}
+```

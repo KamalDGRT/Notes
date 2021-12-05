@@ -756,3 +756,59 @@ query {
     }
 }
 ```
+
+Lets insert another record:
+
+```gql
+mutation {
+    insertshop_inventory(value: { key: "dhe342", value: "coca cola" }) {
+        value {
+            key
+            value
+        }
+    }
+}
+```
+
+Now lets see how to delete a record.
+
+```gql
+mutation {
+    deleteshop_inventory(value: { key: "dhe432" }) {
+        value {
+            key
+        }
+    }
+}
+```
+
+**If we try to remove something by the value instead of the primary key that**
+**we have assigned, we will get an error.**
+
+---
+
+### Graph Type Data Model
+
+-   Graph databases are a great way to store data that has relationsips
+    between other pieces of data or in other words, nodes.
+-   Each node is connected by an edge to represent this relationship.
+-   For example, your friends on social media. You and your friends would be
+    the nodes and the connection you have would be represented by the edges.
+-   `docker network create graph`
+
+Clone the repository
+
+```
+git clone https://github.com/datastaxdevs/workshop-introduction-to-nosql.git
+```
+
+Go inside the newly created directory.
+
+```
+docker-compose up -d
+```
+
+It will take some time to set it up.
+
+Graph Database will use Gremlin language. So, you can learn that and then
+implement it.

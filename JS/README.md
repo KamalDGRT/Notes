@@ -550,7 +550,7 @@ startend
 
 ---
 
-### 27. Conncatenating Strings with Plus Equals operator.
+### 27. Concatenating Strings with Plus Equals operator.
 
 ```js
 var str1 = "first";
@@ -565,3 +565,81 @@ firstsecond
 ```
 
 ---
+
+### 28. Constructing Strings with variables
+
+```js
+var myName = "Alan";
+var str = "My name is " + myName + ".";
+console.log(str);
+```
+
+##### Output
+
+```
+My name is Alan.
+```
+
+---
+
+### 29. Appending variables to Strings
+
+```js
+var anAdjective = "awesome";
+var myStr = "I am ";
+myStr += anAdjective;
+console.log(myStr);
+```
+
+##### Output
+
+```
+I am awesome
+```
+
+---
+
+### 30. Finding the length of a string
+
+```js
+var nameLength = 0;
+var myName = "Alan";
+nameLength = myName.length;
+console.log(nameLength);
+```
+
+##### Output
+
+```
+4
+```
+
+---
+
+### 31. Bracket Notation to find first character in string
+
+```js
+var name = "Alan";
+var firstCharacter = name[0];
+console.log(firstCharacter);
+```
+
+##### Output
+
+```
+A
+```
+
+---
+
+### 32. String Immutability
+
+-   Strings are immutable. i.e., they cannot be altered once created.
+-   This does not mean they cannot be changed.
+-   Just that the individual characters of a string literal cannot be changed.
+
+```js
+var myStr = "Jello";
+myStr[0] = "H";  // Not Possible
+myStr = "Hello"; // Possible
+```

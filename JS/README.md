@@ -640,6 +640,110 @@ A
 
 ```js
 var myStr = "Jello";
-myStr[0] = "H";  // Not Possible
+myStr[0] = "H"; // Not Possible
 myStr = "Hello"; // Possible
 ```
+
+---
+
+### 33. Bracket Notation to find Nth Character in String
+
+```js
+var firstName = "Ada";
+var secondLetterOfFirstName = firstName[1];
+console.log(secondLetterOfFirstName);
+
+var lastName = "Lovelace";
+var thirdLetterOfLastName = lastName[2];
+console.log(thirdLetterOfLastName);
+```
+
+##### Output
+
+```
+d
+v
+```
+
+---
+
+### 34. Bracket Notation to Find Last Character in String
+
+```js
+var firstName = "Ada";
+var lastLetterOfFirstName = firstName[firstName.length - 1];
+console.log(lastLetterOfFirstName);
+
+// var lastName = "Lovelace";
+```
+
+##### Output
+
+```
+a
+```
+
+---
+
+### 35. Bracket Notation to Find Nth-to-Last Character in String
+
+```js
+var firstName = "Ada";
+var secondLastLetterOfFirstName = firstName[firstName.length - 2];
+console.log(secondLastLetterOfFirstName);
+```
+
+##### Output
+
+```
+d
+```
+
+---
+
+-   In the arrays you can have any datatype.
+
+```js
+var arr = ["Jan", 24];
+console.log(arr);
+```
+
+-   A nested array looks like this:
+
+```js
+var arr = [
+    ["Bulls", 23],
+    ["White Sox", 34],
+];
+```
+
+-   Indexing works with arrays too.
+-   Array indexes can be used to modify the data at a given index.
+-   Bracket notation `[]` can be used to access elements of a multi-dimensional
+    arrays.
+-   Data can be appended to the end of an array using the `push()` function.
+    It needs the value to be pushed as an argument.
+-   Data can be removed from the end of an array using the `pop()` function.
+    It returns the element removed.
+-   Data can be removed from the start of an array using the `shift()` function.
+    It returns the element removed.
+-   Data can be appended to the start of an array using the `unshift()`
+    function. It needs the value to be pushed as an argument.
+-   Functions allow us to create reusable codes.
+-   It is possible to assign a variable without using `var` keyword.
+    If done such way, then the variable becoms global.
+-   You can use `===` for strict equality checking.
+-   You can use `!==` for strict inequality checking.
+-   The usual comparision operators [`>`, `<`, `>=`, `<=`,] apply to JS too.
+-   The usual logical operators [`!`, `&&`, `||`] apply to JS  too.
+-   If-else condition is also same as CPP.
+-   Switch case concepts is same as CPP.
+-   Switch case fall through is also present.
+
+---
+
+-   Object's values can be used through the `.` operator or the `[]` notation.
+-   To delete a property use `delete <objectName>.<objectProperty>`.
+-   To check if a object has a specific property:
+    `<objName>.hasOwnProperty(<"propertyName">)`. It is often used with if
+    condition.

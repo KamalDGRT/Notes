@@ -735,7 +735,7 @@ var arr = [
 -   You can use `===` for strict equality checking.
 -   You can use `!==` for strict inequality checking.
 -   The usual comparision operators [`>`, `<`, `>=`, `<=`,] apply to JS too.
--   The usual logical operators [`!`, `&&`, `||`] apply to JS  too.
+-   The usual logical operators [`!`, `&&`, `||`] apply to JS too.
 -   If-else condition is also same as CPP.
 -   Switch case concepts is same as CPP.
 -   Switch case fall through is also present.
@@ -747,3 +747,614 @@ var arr = [
 -   To check if a object has a specific property:
     `<objName>.hasOwnProperty(<"propertyName">)`. It is often used with if
     condition.
+
+---
+
+### Record Collection
+
+```js
+/* Question:
+If the value is an empty string remove that property.
+If the property is tracks and if you have a value, instead of updating the
+whole tracks, append the new value to the end of the tracks.
+If the object does not have the property mentioned then create it.
+*/
+
+var collection = {
+    2548: {
+        album: "Slippery When Wet",
+        artist: "Bon Jovi",
+        tracks: ["Let it Rock", "You Give Love a Bad Name"],
+    },
+    2468: {
+        album: "1999",
+        artist: "Prince",
+        tracks: ["1999", "Little Red Corvette"],
+    },
+    1245: {
+        artist: "Robert Palmer",
+        tracks: [],
+    },
+    5439: {
+        album: "ABBA Gold",
+    },
+};
+
+// Making a copy of the orginal object
+var collectionCopy = JSON.parse(JSON.stringify(collection));
+
+// Answer starts here.
+function updateRecords(id, prop, value) {
+    // if value is blank, remove the property
+    if (value === "") {
+        delete collection[id][prop];
+    } else if (prop === "tracks") {
+        // if the tracks property is doesn't exist, we need to create it
+        collection[id][prop] = collection.[id][prop] || [];
+        collection[id][prop].push(value);
+    } else {
+        collection[id][prop] = value;
+    }
+
+    return collection;
+}
+
+updateRecords(2468, "tracks", "test");
+console.log(updateRecords(5439, "artist", "ABBA"));
+```
+
+---
+
+-   `Math.random()` returns a random number `[0, 1)`
+-   `Math.floor(Math.random() * n)` to generate random whole numbers `[0, n)`
+-   To get a random number 2 limits:
+
+```js
+function randomRange(myMin, myMax) {
+    return Math.floor(Math.random() * (myMax - myMin + 1)) + myMin;
+}
+
+console.log(randomRange(5, 15));
+```
+
+-   `parseInt()` takes in a string and returns an integer
+-   `parseInt()` can also be used with a radix. i.e. bases.
+-   Ternary operator `?:` concept is same as CPP.
+-   Even though an array is declared as `const`, it can still be mutated.
+
+```js
+const = [5, 7, 2];
+function editInPlace() {
+    // s = [2, 7, 2]; This type of direct assignment is not possible.
+
+    // This is possible
+    s[0] = 2;
+    s[1] = 5;
+    s[2] = 7;
+}
+editInPlace();
+console.log(s);
+```
+
+-   `Object.freeze(<objectName>);` prevents mutation even when `const` is used.
+
+---
+
+### Use Arrow functions to write concise anonymous functions
+
+```js
+// Example of an anonymous function
+var magic = function () {
+    return new Date();
+};
+```
+
+-   Whenever you have an anonymous function, you can convert it to arrow a
+    function.
+-   The above thing can be done as:
+
+```js
+// Example of an arrow function
+var magic = () => {
+    return new Date();
+};
+```
+
+-   The above line can still be simplified.
+
+```js
+var magic = () => new Date();
+// Instead of `var`, `const` could be used.
+```
+
+-   Arrow functions with parameters
+
+```js
+// anonymous function
+var myConcat = function (arr1, arr2) {
+    return arr1.concat(arr2);
+};
+console.log(myConcat([1, 2], [3, 4, 5]));
+
+// arrow function
+var myConcat = (arr1, arr2) => arr1.concat(arr2);
+console.log(myConcat([1, 2], [3, 4, 5]));
+// Once again, instead of `var`, `const` could be used.
+```
+
+---
+
+### Writing Higher Order Arrow Functions
+
+-   Arrow functions work really well with higher order functions(HOF)
+    such as `map`, `filter` and `reduce`
+-   HOFs take functions as arguments for processing collections of data.
+-   Whenever one function takes another function as an argument, that is a
+    good time to use an arrow function.
+
+```js
+// Question: Get the square of positive integers.
+
+const realNumberArray = [4, 5.6, -9.8, 3.14, 42, 6, 8, 8.34, -2];
+
+const squareList = (arr) => {
+    // This line is succint because of the arrow functions
+
+    const squaredIntegers = arr
+        .filter(
+            // The filter function is going to give us the positive integers
+            // Usually you use paranthesis for arrow functions.
+            // but if you have a single argument it is not needed.
+            (num) => Number.isInteger(num) && num > 0
+        )
+        .map(
+            // To get the square of each number in the array we are using map()
+            // x means every element from the array that is passed to it
+            (x) => x * x
+        );
+    return squaredIntegers;
+};
+
+const squaredIntegers = squaredList(realNumberArray);
+console.log(squaredIntegers);
+```
+
+---
+
+#### Rest Operator
+
+-   The rest operator allows you to create a function that takes a variable
+    number of arguments.
+-   The rest operator is 3 dots `...`
+
+```js
+const sum = (function () {
+    return function sum(...args) {
+        return args.reduce((a, b) => a + b, 0);
+    };
+})();
+
+console.log(sum(1, 2, 3, 4, 5));
+```
+
+#### Use the spread operator to evaluate arrays in-place
+
+-   The spread operator looks just like the rest operator (3 dots `...`)
+-   It expands an already existing array or it spreads out an array.
+-   It takes an array and spreads out into its individual parts.
+-   So, it can be used to make a copy of an existing variable.
+
+```js
+const arr1 = ["JAN", "FEB", "MAR", "APR", "MAY"];
+let arr2;
+
+(function () {
+    arr2 = [...arr1];
+    arr1[0] = "potato";
+})();
+console.log(arr2);
+```
+
+#### Use destructuring assignment to assign variables from objects
+
+```js
+var voxel = { x: 3.6, y: 7.4, z: 6.54 };
+
+// Old way of reading the object's values and assigning to another variable
+var x = voxel.x; // x = 3.6
+var y = voxel.y; // y = 7.4
+var z = voxel.z; // z = 6.54
+
+// New way of doing things.
+// The values of x, y, z from the object are assigned to a, b, c respectively
+const { x: a, y: b, z: c } = voxel; // a = 3.6, b = 7.4, c = 6.54
+```
+
+#### Destructuring assignment with nested objects
+
+```js
+const LOCAL_FORECAST = {
+    today: { min: 72, max: 83 },
+    tomorrow: { min: 73.3, max: 84.6 },
+};
+
+function getMaxOfTomorrow(forecast) {
+    const {
+        tomorrow: { max: maxOfTomorrow },
+    } = forecast;
+    return maxOfTomorrow;
+}
+
+console.log(getMaxOfTomorrow(LOCAL_FORECAST));
+```
+
+#### Use Destructuring Assignment to Assign Variables from Arrays
+
+-   You can use destructuring assignment to assign variables from arrays.
+
+```js
+const [z, x] = [1, 2, 3, 4, 5, 6];
+console.log(z, x);
+// 1,2
+// assigns the first 2 elements of the array to z and x respectively.
+```
+
+-   The difference between destructuring from arrays and destructuring from
+    objects is that you cannot specify which element from the array should go
+    into a variable.
+-   It just goes in order.
+-   However, if you want the 4th element, you can add empty commas.
+
+```js
+const [z, x, , y] = [1, 2, 3, 4, 5, 6];
+console.log(z, x, y);
+// 1,2,4
+```
+
+-   You can use destructuring of arrays to switch the places of variables.
+
+```js
+let a = 8,
+    b = 6;
+
+(() => {
+    [a, b] = [b, a];
+})();
+
+console.log(a);
+console.log(b);
+```
+
+#### Use destructuring assignment with the rest operator
+
+-   We can do it to re-assign array elements.
+
+```js
+const source = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+function removeFirstTwo(list) {
+    const [, , ...arr] = list;
+
+    return arr;
+}
+
+const arr = removeFirstTwo(source);
+console.log(arr);
+console.log(source);
+```
+
+##### Output
+
+```
+[
+  3, 4, 5,  6,
+  7, 8, 9, 10
+]
+[
+  1, 2, 3, 4,  5,
+  6, 7, 8, 9, 10
+]
+```
+
+#### Use destructuring assignment to pass an object as a function's parameters
+
+```js
+const stats = {
+    max: 56.78,
+    standard_deviation: 4.34,
+    median: 34.54,
+    mode: 23.87,
+    min: -0.75,
+    average: 35.85,
+};
+const half = (function () {
+    return function half({ max, min }) {
+        return (max + min) / 2.0;
+    };
+})();
+console.log(stats);
+console.log(half(stats));
+```
+
+##### Output
+
+```
+{
+  max: 56.78,
+  standard_deviation: 4.34,
+  median: 34.54,
+  mode: 23.87,
+  min: -0.75,
+  average: 35.85
+}
+28.015
+```
+
+#### Creating Strings using Template Literals
+
+```js
+const person = {
+    name: "Zodiac Hasbro",
+    age: 56,
+};
+
+// Template literal with multi-line and string interpolation
+const greeting = `Hello, my name is ${person.name}!
+I am ${person.age} years old.`;
+
+console.log(greeting);
+
+const result = {
+    success: ["max-length", "no-amd", "prefer-arrow-functions"],
+    failure: ["no-var", "var-on-top", "linebreak"],
+    skipped: ["id-blacklist", "no-dup-keys"],
+};
+function makeList(arr) {
+    const resultDisplayArray = [];
+    for (let i = 0; i < arr.length; i++) {
+        resultDisplayArray.push(`<li class="text-warning">${arr[i]}</li>`);
+    }
+
+    return resultDisplayArray;
+}
+/**
+ * makeList(result.failure) should return:
+ * [ `<li class="text-warning">no-var</li>`,
+ *   `<li class="text-warning">var-on-top</li>`,
+ *   `<li class="text-warning">linebreak</li>` ]
+ **/
+const resultDisplayArray = makeList(result.failure);
+
+console.log(resultDisplayArray);
+```
+
+##### Output
+
+```
+Hello, my name is Zodiac Hasbro!
+I am 56 years old.
+[
+  '<li class="text-warning">no-var</li>',
+  '<li class="text-warning">var-on-top</li>',
+  '<li class="text-warning">linebreak</li>'
+]
+```
+
+#### Write Concise Object Literal Declarations Using Simple Fields
+
+Usually we do this
+
+```js
+const createPerson = (name, age, gender) => {
+    return {
+        name: name,
+        age: age,
+        gender: gender,
+    };
+};
+console.log(createPerson("Zodiac Hasbro", 56, "male"));
+```
+
+-   In the above example we have the `name:name`, `age:age` and `gender:gender`.
+-   Instead of doing that, you can just do this:
+
+```js
+const createPerson = (name, age, gender) => ({ name, age, gender });
+console.log(createPerson("Zodiac Hasbro", 56, "male"));
+```
+
+#### Write Concise Declarative Functions with ES6
+
+-   Old roundabout way of using a funciton inside an object
+
+```js
+const bicycle = {
+    gear: 2,
+    setGear: function (newGear) {
+        this.gear = newGear;
+    },
+};
+
+bicycle.setGear(3);
+console.log(bicycle.gear);
+```
+
+-   ES6 way of doing it - just removed the `: function` part
+
+```js
+const bicycle = {
+    gear: 2,
+    setGear(newGear) {
+        this.gear = newGear;
+    },
+};
+
+bicycle.setGear(3);
+console.log(bicycle.gear);
+```
+
+#### Use class Syntax to Define a Constructor Function
+
+-   Older way of creating object with a `new` keyword.
+
+```js
+var SpaceShuttle = function (targetPlanet) {
+    this.targetPlanet = targetPlanet;
+};
+var zeus = new SpaceShuttle("Jupiter");
+
+console.log(zeus.targetPlanet);
+```
+
+-   ES6 way of doing things:
+
+```js
+class SpaceShuttle {
+    constructor(targetPlanet) {
+        this.targetPlanet = targetPlanet;
+    }
+}
+var zeus = new SpaceShuttle("Jupiter");
+
+console.log(zeus.targetPlanet);
+```
+
+-   Example 2
+
+```js
+function makeClass() {
+    class Vegetable {
+        constructor(name) {
+            this.name = name;
+        }
+    }
+    return Vegetable;
+}
+const Vegetable = makeClass();
+const carrot = new Vegetable("carrot");
+console.log(carrot.name);
+```
+
+#### Use getters and setters to Control Access to an Object
+
+-   Example 1
+
+```js
+class Book {
+    constructor(author) {
+        this._author = author;
+    }
+    // getter
+    get writer() {
+        return this._author;
+    }
+    // setter
+    set writer(updatedAuthor) {
+        this._author = updatedAuthor;
+    }
+}
+```
+
+-   Example 2
+
+```js
+function makeClass() {
+    class Thermostat {
+        constructor(temp) {
+            this._temp = (5 / 9) * (temp - 32);
+        }
+        get temperature() {
+            return this._temp;
+        }
+        set temperature(updatedTemp) {
+            this._temp = updatedTemp;
+        }
+    }
+    return Thermostat;
+}
+
+const Thermostat = makeClass();
+const thermos = new Thermostat(76);
+let temp = thermos.temperature;
+thermos.temperature = 26;
+temp = thermos.temperature;
+console.log(temp);
+```
+
+#### Why Using Getters and Setters?
+
+-   It gives simpler syntax
+-   It allows equal syntax for properties and methods
+-   It can secure better data quality
+-   It is useful for doing things behind-the-scenes
+-   It's perfect for classes that will usually only be instantiated
+    once per include.
+
+#### Understand the differences between require and import
+
+-   In the past people would use the require function to import functions and
+    code from other files.
+-   But now we have import and export.
+-   You can export code from one file and import it in another file.
+-   It also allows you to only import certain functions or certain variables.
+
+```js
+// string_function.js
+export const capitalizeString = str => str.toUpperCase()
+```
+
+```js
+// index.js
+import { capitalizeString } from "./string_function"
+const cap = capitalizeString("hello!");
+
+console.log(cap);
+```
+
+#### Use export export to reuse a code block
+
+```js
+const capitalizeString = (string) => {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+export { capitalizeString };
+
+export const foo = "bar";
+export const bar = "foo";
+```
+
+#### Use * to Import Everything from a File
+
+```js
+import * as capitalizeStrings from "capitalize_strings";
+
+// capitalizeStrings is the object name.
+// The object name can be anything but for best practices it is recommended
+// to use the camel casing of the imported file.
+// It is through this object we will access imported objects.
+```
+
+#### Create an Export Fallback with export default
+
+-   In the previous exports, we saw about named exports.
+-   There is also something called as export defaults.
+-   This is a fallback export and it is often used if you want to export
+    only one thing from a file.
+
+```js
+export default function subtract(x,y) {return x - y;}
+```
+
+#### Import a default export
+
+-   It is pretty much the same as before but there is a slight difference.
+-   Lets say we have a file `math_functions.js` and in that we have a default
+    export `subtract`.
+-   The difference is we won't be using curly braces for default import but we
+    still have to say what it is from. i.e. `math_functions`.
+
+```js
+import subtract from "math_functions";
+
+subtract(7,4);
+```

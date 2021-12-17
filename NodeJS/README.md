@@ -34,3 +34,94 @@ Started on 11th December 2021.
 
 ---
 
+While importing we use `const` because we do not want to accidentaly change it
+to something else like `importVar = 1;`
+
+#### Module Wrapper Function
+
+Lets say `logger.js` had the following content:
+
+```js
+var url = "http://mylogger.io/log";
+
+function log(message) {
+    // Send an HTTP Request
+    console.log(message);
+}
+
+module.exports.log = log;
+```
+
+and `app.js` has this:
+
+```js
+const logger = require("./logger");
+
+logger.log("Message from app!");
+```
+
+-   Usually when we import a module, node adds a wrapper function and that
+    will look like this:
+
+```js
+(function (exports, require, module, __filename, __dirname) {
+    var url = "http://mylogger.io/log";
+
+    function log(message) {
+        // Send an HTTP Request
+        console.log(message);
+    }
+
+    module.exports.log = log;
+});
+```
+
+---
+
+### Video: Oe421EPjeBE - Node.js and Express.js full course
+
+#### Date started: 17th December 2021
+
+#### Topics covered:
+
+-   Fundamentals of Node.js
+-   Express.js
+-   MongoDB, Mongoose
+-   Applications
+-   Deployment
+
+-   The main goal of this course is to build modern, fast and scalable
+    server-side web applications with node.
+
+### What is NodeJS?
+
+-   Environment to run JS outside of the Browser
+-   Created in 2009 and is build on top of Chrome's v8 JS engine
+-   Big community
+-   Full-Stack
+
+### Pre-requisites
+
+-   Basics of HTML, CSS, JS [ES6]
+-   Callbacks, promises, Async-await
+-   Youtube - Code Addict
+-   Playlist - JS Nuggets
+
+### Course Structure
+
+-   Introduction
+-   Installation
+-   Node Fundamentals
+-   Express Tutorial
+-   Building Apps
+
+### Difference between Browser JS & Node JS
+
+| Browser JS       | Node.js          |
+| ---------------- | ---------------- |
+| DOM              | No DOM           |
+| Window           | No Window        |
+| Interactive Apps | Server Side Apps |
+| No Filesystem    | Filesystem       |
+| Fragmentation    | Versions         |
+| ES6 modules      | Common JS        |

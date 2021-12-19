@@ -125,3 +125,112 @@ logger.log("Message from app!");
 | No Filesystem    | Filesystem       |
 | Fragmentation    | Versions         |
 | ES6 modules      | Common JS        |
+
+### Global Variables in NodeJS
+
+-   It means that anywhere in the application you can access those variables.
+
+-   Some of those global variables are:
+    -   `__dirname` - path to current directory
+    -   `__filename` - file name
+    -   `require` - function to use modules (CommonJS)
+    -   `module` - info about current module (file)
+    -   `process` - info about env where the program is being executed
+
+### Modules in NodeJS
+
+-   Every file is a module.
+-   You can export multiple stuff or a single stuff.
+-   Multiple exports example -> `module.exports = { john, peter };`
+-   Single export example -> `module.exports = sayHI;`
+-   Single export example -> `module.exports.displayHi = sayHI;`
+
+### Builtin modules
+
+-   NodeJS has a lot of built-in modules
+-   Each module in turn has a lot of properties
+-   We will cover only some of the built-in stuff
+    -   os
+    -   path
+    -   fs
+    -   http
+
+### NPM
+
+-   Package, dependency and module - all mean the same - Shareable JS Code
+-   `npm` - Global command, comes with node
+-   `npm --version` - lists out the version
+-   To install a local dependency (to be used in a particular project)
+
+    ```
+    npm i <package name>
+    ```
+
+-   To install a dependency globally (to be used in any project)
+
+    ```
+    npm install -g <package name>
+    ```
+
+-   In Mac,
+
+    ```
+    sudo npm install -g <package name>
+    ```
+
+-   `package.json` - manifest file (stores important info project/package)
+-   There are 3 ways to create `package.json`
+-   manual approach would be creating `package.json` in the root, creating
+    properties, etc.,
+-   To install a dependency only for development purposes
+    `npm i nodemon -D`
+-   To uninstall a package - `npm uninstall bootstrap`
+
+### Events in NodeJS
+
+-   Event driven programming is used heavily in NodeJS.
+-   First listen for an event and then emit it.
+
+```js
+// get back the class
+// if want custom extend from class
+// otherwise just for emitting and handling events create instance
+const EventEmitter = require("events");
+
+const customEmitter = new EventEmitter();
+
+// on and emit methods
+// keep track of the order
+// additional arguments
+// built-in modules utilize it
+
+customEmitter.on("response", (name, id) => {
+    console.log(`data recieved user ${name} with id:${id}`);
+});
+
+customEmitter.on("response", () => {
+    console.log("some other logic here");
+});
+
+customEmitter.emit("response", "john", 34);
+```
+
+### Stream
+
+-   Streams are used to read or write sequentially.
+-   There are 4 types of streams:
+    -   Writeable - only writing
+    -   Readable - only reading
+    -   Duplex - both read and write
+    -   Transform - data can be modified while reading or writing
+
+---
+
+### API vs SSR
+
+| API                               | SSR                   |
+| --------------------------------- | --------------------- |
+| Application Programming Interface | Server Side Rendering |
+| API - JSON                        | SSR - Template        |
+| Send Data                         | Send Template         |
+| `res.json()`                      | `res.render()`        |

@@ -1,4 +1,4 @@
-# React JS Notes
+	# React JS Notes
 
 Started learning on 19th December 2021 from
 [this](https://www.youtube.com/watch?v=4UZrsTqkcW4).
@@ -106,3 +106,15 @@ ReactDom.render(<Greeting />, document.getElementById("root"));
 
 -	All components must be closed. For example, Either like`<Greeting/>` or
 	like this `<Greeting></Greeting>`.
+-	Stateless functional components will always JSX
+
+
+### JSX Rules
+
+-	Return single element
+-	div / section / article / fragment
+-	fragment looks like this: `<> ... </>`, `...` represent content.
+-	use camelCase for html attribute
+-	`className` instead of `class`
+-	close every element
+-	formatting

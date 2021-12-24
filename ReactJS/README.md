@@ -144,3 +144,15 @@ ReactDom.render(<Greeting />, document.getElementById("root"));
     capital letter and should be in capital case.
 -   Hooks can be called only inside of the body of a function component.
 -   You cannot call the hook conditionally. (i.e. based on some condition)
+
+### useEffect
+
+-   runs after every re-render
+-   cleanup function
+-   second parameter
+-   If you add a empty list `[]` as the second argument to the `useEffect`
+    hook, then that is executed only in the initial render.
+-   there is no limit on the number of `useEffect` hooks in a given file.
+-   Clean up functions will be added as a return statement in this hook.
+-   useEffect cannot be asynchronous.
+-   i.e. you can not use `async` and `await` here.

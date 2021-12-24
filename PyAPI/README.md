@@ -1728,6 +1728,19 @@ Content can be found [here](https://youtu.be/0sOvCWFmrtA?t=24423);
 
 -   Implemented logging in feature in the API
 -   Created some variable `{{JWT}}` for easier usage
+
+#### Steps to create the `{{JWT}}` variable in Postman
+
+-   Login Endpoint -> `Tests` -> add this code:
+
+```
+pm.environment.set("JWT", pm.response.json().access_token);
+```
+
+-   After that, in the other end points
+-   `Authorization` -> `Authorization Type` -> `Bearer Token`
+-   In the Token Field, pass in the environment variable ``{{JWT}}``
+
 -   Installed `python-jose[cryptography]` pip package
 -   Used bcrypt to hash the passwords and use it in login
 -   Created `oauth2.py` for storing the jwt authentication

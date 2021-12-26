@@ -156,3 +156,30 @@ ReactDom.render(<Greeting />, document.getElementById("root"));
 -   Clean up functions will be added as a return statement in this hook.
 -   useEffect cannot be asynchronous.
 -   i.e. you can not use `async` and `await` here.
+
+### useRef
+
+-   useRef works a lot like useState
+-   of course there are some differences
+-   as for the similiarties:
+    -   it also preserves the values in between the render
+-   unlike useState, useRef does not trigger re-render.
+-   it targets, DOM nodes/ elements
+
+### useReducer
+
+-   it is used when you have a more complicated setup
+-   for simple to do app, it wont be needed, but for complex apsps,
+    then yes, it is recommended to use.
+
+```js
+const [state, dispatch] = useReducer(reducer)
+```
+
+-   reducer is a function
+
+```js
+const reducer = (state, action) =>  { return state;}
+```
+
+-   always return some kind of state in the reducer function.

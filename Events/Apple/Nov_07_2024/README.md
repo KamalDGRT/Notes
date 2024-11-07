@@ -145,3 +145,17 @@ _**Resources:**_ Discover Observation in Swiftui - WWDC23
 _**Resources:**_
 - Data Essentials in SwiftUI - WWDC20
 - Demystify SwiftUI performance - WWDC23
+
+---
+
+### Reduce Your App's Energy Impact
+- Karthik Sarve
+
+###### What we are gonna look into:
+- Understand energy impact
+- Key technologies
+- Monitor energy usage
+
+
+###### Battery
+- 

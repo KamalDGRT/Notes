@@ -156,6 +156,166 @@ _**Resources:**_
 - Key technologies
 - Monitor energy usage
 
+###### What is energy
 
-###### Battery
+- Energy = Power x Time
+- Are we sending a `High Priority` push notification?
+- Is it really required/relevant?
+
+###### Direct energy usage
+- Runtime
+- CPU activity
+- Network activity
+- Location activity
+- Push notifications
+
+###### Indirect energy usage
+- Crashes and stability problems
+- Memory use
+- Hangs
+- Disk writes
+
+###### Key Technologies
+To provide best experience try to use
+- Transitions to background
+- Downloading assets
+- App refresh tasks
+- Processing & Machine Learning
+- Live activities
+
+###### Limit work into the background
+- Finish in-flight work and clean up
+- `beginBackgroundTask(withName:expirationHandler)`
+- `endBackgroundTask(_:)`
+- Let the system know when the work is complete
+- Dangling tasks may result in a termination
+
+###### Download assets efficiently
+- Background `URLSession`
+- Intelligently schedules downloads
+- Out-of-process design
+- Resumable download and upload support
+
+_Resources:_
+Build robust and resumable file transfers - WWDC23
+
+###### Refresh app data periodically
+- `BGAppRefreshTask`
+    - Opportunistic time to update content
+    - Considers patterns in behavior
+    - Best for periodic updates
+- Background Notifications
+    - Low priority push notifications required
+    - Best for infrequent 
+
+###### Schedule processing work
+- `BGProcessingTask`
+    - suitable for time-consuming work
+    - considers charging state
+    - Handles interruption
+
+###### Update Live Activities efficiently
+- reduce high energy impact with low priority notifications
+- reserve higher priority for urgent updates
+- Minimize update frequency
+- Use `Text(_:format:)` for countdowns - `New`
+
+_Resources:_
+Update Live Activities with push notifications - WWDC23
+
+----
+
+#### Monitorig Energy Usage
+
+###### Profile Your app
+
+- Before ship - Energy Gauges, Instruments, XCTest
+- After ship - Xcode Organizer, App Store Connect, MetricKit
+
+SignPosts Blocks in code can be used to identify in logs in Instruments.
+
+###### Next Steps
+- Leverage energy efficient APIs to provide updates in background
+- Monitor and optimize energy usage continuously
+- Improve overall performance
+
+----
+
+### Speed up Core ML loading and execution
+- Sandhya Kundapur
+
+###### Machine Learning Models
+- how will it impact app size?
+- how long will it take to run?
 - 
+
+###### Overview
+- Background
+- Model analysis
+- App analysis
+
+###### Background
+- workflow
+- compute units
+- frameworks
+- model loading
+
+###### Workflow
+- `Train` -> `Prepare` -> `Integrate`
+
+_Resources:_
+- Train your machine learning and AI models on Apple GPUs - WWDC24
+- Explore machine learning on Apple platforms - WWDC24
+
+###### Compute units
+
+- the hardware stuff - cpu, gpu, neural engines
+
+# Framewokrs
+
+- model integrations
+- Core ML, uses MPS Graph(GPUs) & BNNS Graph(CPUs)
+
+#### Model loading
+
+- Source Model(`MLPACKAGE`) -> Compile -> Compiled Model(`MLMODELC`) -> Instantiate..
+
+##### Cache policy
+
+- persists across
+    - model reload
+    - app relaunch
+    - reboot
+
+- purged when
+    - storage pressure
+    - OS update
+    - model changes or is deleted
+
+#### Model Analysis
+
+###### Preparation
+
+- PyTorch , CreateML, MLPAckage
+
+- How long does it take to load?
+- how large is the model on the disk?
+- how long will it take to colorize an image?
+- how does the performance compare across devices?
+- model pruning, paletization?
+
+#### App Analysis
+- Core ML Instrument
+- `TaskGroup`
+
+###### Wrap up
+
+- how will it impact app size?
+- how long will it take to run?
+- will the test change in different devices?
+
+###### Next steps
+
+- analyze your models with the Xcode performance report
+- profile your machine learning features
+- use compression to improve disk space, speed, memory

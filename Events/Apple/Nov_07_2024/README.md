@@ -1,4 +1,4 @@
-# B
+# Build faster and more efficient apps
 
 ###### 3 phases:
 - develop, test, monitor

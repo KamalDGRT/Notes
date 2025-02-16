@@ -1,0 +1,329 @@
+24th January:
+Difference between function and closure
+types of closure and its usage
+Enumeration and its usage
+Difference between structure and classes in Swift
+How to use Structure and Classes in Swift
+Status: Done
+
+25th January:
+Optionals in Swift ****
+Inbuilt functions in Swift
+Error Handling
+Protocols
+Extensions
+
+
+28th January 2022
+ARC ****
+Retain cycle
+Extension (code)
+- its usage
+- how to implement
+
+
+31st January 2022
+- Extensions (code)
+- Nested Types
+- 7 ways of unwrapping Optionals
+- Type Casting (code with examples)
+
+
+
+wwdc latest videos
+Apple conference videos
+evolution of iOS
+device screen sizes
+auto layout
+constraints
+how to write efficient code in swift
+
+
+ADA complaints
+banner
+
+
+
+https://www.youtube.com/watch?v=1YtpP4Ytgrs
+
+
+By default, what is the default type of closure?
+closures are by default non-escaping in Swift 
+
+
+https://abhimuralidharan.medium.com/difference-between-a-struct-and-a-class-in-swift-53e08df73714
+
+Full forms:
+-----------
+KT - Knowledge Transfer
+AC - Acceptance Criteria
+QA - Quality Assurance
+UAT - User Acceptance Testing
+ADA - Americans with Disabilities Act (ADA)
+WVD - Virtual Windows Desktop
+IPM - Iteration Planning Meetings
+
+
+
+Optionals:
+https://www.youtube.com/watch?v=IG_JCxSPa_k
+https://www.youtube.com/watch?v=ZL8BFK8bVjk
+
+
+
+--------------------------------------------------------------------------
+
+Architecture Types
+- What is it
+- different types of architectures that iOS devs use
+- Viper Architecture
+- Advatanges of Viper
+- What were the architectures before Viper
+- Why Viper
+- How Viper came into existence
+
+MVC
+MVVM
+
+
+
+Types Of iOS Design Architecture Patterns  :-
+
+-  MVC Architecture :- Model View Controller
+-  MVVM Architecture :- Model View ViewModel
+-  MVP Architecture :- Model View Presenter
+-  VIPER Architecture :- View Interactor Presenter Entity Routing
+
+
+Why Architecture?
+- Large project will go over lots of lines
+- So, instead of having it one line, it will be a good practice to split it into modules.
+- Kind of like, Divide and Conquer Strategy.
+- When modules are present in different files, it becomes easier to detect and fix the bugs.
+
+Model - It is the part which interacts with the Database
+View - It is the part that is shown to the user
+Controller - It is the middle-man between the Model and the View
+
+
+V - View (displays info to the user and detects user interaction)
+I - Interactor (manipulates the entities/models by fetching data and storing data)
+P - Presenter (without the use of the UIKit, it contains the UI related business logic and prepares the data for presentation)
+E - Entity(the model objects)
+R - Router (aka wireframe, takes care of navigation in our module/application)
+
+VIPER arcitecture allows for a clearer separation of concerns and sepearates the viewController from handling most of the responsibility in the app. Concerns are separated into modules for each usage (i.e., provide a map for the user) Each module has a aclear layer of routing logic, presentation logic and business logic)
+
+
+
+SOLID Principles
+S - Single
+O - 
+L - 
+I - 
+D -
+
+
+S - Single Responsibilty Principle
+O - Open Closed Principle
+L - Liskov Substitution Principle
+I - Interface Segregation Principle
+D - Dipendency Inversion Principle
+
+
+SRP
+A class should have one and only one reason to change.
+A class/component/package should have only one responsiblity
+A class should do only one thing
+
+---------------------------------------
+
+Open/Closed Principle
+Software entities should be open for extension but closed for modification
+Example: Shapes and its areas
+
+---------------------------------------
+
+Liskov Substitution Principle
+
+Subtypes must be suitable for their base types.
+Inheritance.
+You should use inheritance only when the super class is replaceable by a sub-class in all the instances. 
+Dont use inheritance only to reuse a piece of code.
+
+---------------------------------------
+
+Interface Segregation Principle (ISP)
+
+The dependency of one class to another one should depend on the smallest possible interface.
+* Clients should not be forced to implement interfaces they don't use.
+* Instead of one fat interface many small interfaces are preferred based on groups of methods, each one serving one purpose.
+
+Example of bad implementaion of ISP
+
+Animal - feeds, grooms - abstract
+
+Dog extends Animal - feed and groom
+Tiger also extends Animal - feed and groom
+but tiger does not need grooming 'cause it is not a domestic animal
+
+Solution:
+Have an another interface called Pet
+
+I - Animal
+I - Pet extends Animal
+C - Dog extends Pet
+C - Tiger extends Animal
+
+Why we should have small interfaces:
+If we have large interfaces, every time we change the interface, we have to implement the same in the extended classes.
+
+
+-----------------------------------------
+
+Dependency Inversion Principle
+
+Depends upon abstractions (interfaces) not upon concrete classes.
+
+void copy(OutputDevice dev)
+{
+   int c;
+   while (c == ReadKeyboard() != EOF) {
+      if (dev == printer)
+          writePrinter(c);
+      else
+          writeDisk(c);
+   }
+}
+
+The problem with the above fn is that as the number of output device keeps on increasing, the copy() has to be changed everytime. 
+
+So, A better implementation would be
+
+
+interface Reader
+    char read()
+
+interface Writer
+    char write(char ch)
+
+voice copy(Reader r, Writer w) {
+    char ch;
+    while((ch = r.read() != EOF) {
+       w.write(ch);
+    }
+}
+
+
+Library Management System
+
+10 days 
+5 days above, 2 rupees fine per day
+borrow a book
+total books taken
+user can take n number of books
+only one admin login
+admin can alone access all the details
+one user cant see details of another user
+system can have n number of users
+limit on n
+status on how much overdue
+
+
+
+-----------------------------------------
+28th February 2022
+
+* Closures *****
+What is it
+its types and when to use it
+where we use closure
+advantages of closure
+causes and effects on memory
+
+MVVM Architecture
+
+Connection between M  V VM & Closure
+
+
+func test(a: Int, b:()->()){
+    // gets 2 nos
+    // sum 
+    // PRINT
+}
+------------------------------------------
+
+
+{ (parameters) -> returnType in
+   // statements
+}
+
+---
+
+var greet = {
+  print("Hello, World!")
+}
+
+
+// call the closure
+greet()
+
+
+
+------
+
+
+// closure that accepts one parameter
+let greetUser = { (name: String)  in
+    print("Hey there, \(name).")
+}
+
+// closure call
+greetUser("Delilah")
+
+
+------------
+
+Closures that return a value:
+
+// closure definition
+var findSquare = { (num: Int) -> (Int) in
+  var square = num * num
+  return square
+}
+
+// closure call
+var result = findSquare(3)
+
+print("Square:",result)
+
+-----------------------------------
+
+Trailing Closure
+In trailing closure, if a function accepts a closure as its last parameter
+we can call the function by passing closure as a function body without mentioning the name of the parameter. 
+
+
+-------------------------------------
+
+Autoclosure
+-----------
+
+
+While calling a function, we can also pass the closure without using the braces {}.
+
+// define a function with automatic closure
+func display(greet: @autoclosure () -> ()) {
+ // closure call
+ greet()
+}
+
+// pass closure without {}
+display(greet: {print("Hello World!")})
+------------------------------------
+
+Why do we use autoclosures over trailing Closures?
+When to use autoclosure?
+Why business logic should not be in the view over view-model?
+Unit test relation in view-model? (or) Why do we use only UNit test for VM?
+MVVM advantages - main advantages (2)
